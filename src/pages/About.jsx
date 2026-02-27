@@ -6,7 +6,7 @@ import Skills from "../components/sections/SkillSection";
 import Services from "../components/sections/ServicesSections";
 import Education from "../components/sections/Education";
 
-import profileImg from "../assets/images/about.jpg";
+import profileImg from "../../public/images/about.jpg";
 import { motion } from "framer-motion";
 
 export default function AboutPage({ dark }) {

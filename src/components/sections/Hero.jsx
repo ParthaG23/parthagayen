@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { HiOutlineHand } from "react-icons/hi";
 import { useState, useEffect } from "react";
-import heroImg from "../../assets/images/hero.jpg";
+import heroImg from "../../../public/images/hero.jpg";
 
 export default function Hero({ dark }) {
   const [showHand, setShowHand] = useState(false);

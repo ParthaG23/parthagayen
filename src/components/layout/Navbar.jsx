@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
-import profile from "../../assets/images/hero.jpg";
+import profile from "../../../public/images/hero.jpg";
 
 export default function Navbar({ dark }) {
   const [scrolled, setScrolled] = useState(false);

@@ -6,7 +6,7 @@ import {
   FaInstagram,
   FaEnvelope
 } from "react-icons/fa";
-import aboutImg from "../../assets/images/about.jpg";
+import aboutImg from "../../../public/images/about.jpg";
 
 export default function AboutSection({ dark }) {
   const navigate = useNavigate();

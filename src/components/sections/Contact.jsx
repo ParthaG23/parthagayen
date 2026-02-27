@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import profileImg from "../../assets/images/about.jpg";
+import profileImg from "../../../public/images/hero.jpg";
 
 export default function Contact({ dark }) {
   const form = useRef();
