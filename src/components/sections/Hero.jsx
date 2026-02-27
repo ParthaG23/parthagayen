@@ -96,7 +96,7 @@ export default function Hero({ dark }) {
           {/* RIGHT CONTENT */}
           <div className="text-center lg:text-right max-w-md mx-auto lg:mx-0">
             <h1 className="font-extrabold text-4xl lg:text-[clamp(48px,5vw,80px)] leading-none">
-              DEVELOPER
+             DEVELOPER
             </h1>
 
             <p className="mt-6 text-base opacity-70 leading-relaxed">

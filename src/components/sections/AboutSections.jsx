@@ -1,11 +1,6 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import {
-  FaGithub,
-  FaLinkedin,
-  FaInstagram,
-  FaEnvelope
-} from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from "react-icons/fa";
 
 import aboutImg from "../../assets/images/about.webp";
 
@@ -20,19 +15,33 @@ export default function AboutSection({ dark }) {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-
         {/* ================= LEFT CONTENT ================= */}
         <div className="text-center lg:text-left">
-
+          <p className="text-lime-400 text-sm uppercase tracking-widest mb-2">
+            Who I Am
+          </p>
           {/* Heading */}
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 lg:mb-6 tracking-wide">
             ABOUT ME
           </h2>
 
           {/* Description */}
-          <p className="leading-relaxed max-w-xl mx-auto lg:mx-0 mb-8 opacity-80 text-sm sm:text-base">
-            Hi, I'm Partha — a passionate Computer Science student and
-            aspiring Full-Stack Developer.
+          <p className="leading-relaxed max-w-xl mb-6 opacity-80 text-sm sm:text-base">
+            I am a results-driven Computer Science undergraduate and MERN Stack
+            Developer with hands-on experience building modern web applications
+            from concept to deployment.
+          </p>
+
+          <p className="leading-relaxed max-w-xl mb-6 opacity-80 text-sm sm:text-base">
+            My expertise includes developing secure REST APIs, implementing
+            authentication systems, designing optimized database schemas, and
+            crafting seamless front-end interfaces using React and TailwindCSS.
+          </p>
+
+          <p className="leading-relaxed max-w-xl mb-10 opacity-80 text-sm sm:text-base">
+            I am passionate about writing efficient code, solving complex
+            technical challenges, and continuously improving my technical and
+            analytical skills to deliver high-quality software solutions.
           </p>
 
           {/* ================= STATS ================= */}
@@ -68,7 +77,8 @@ export default function AboutSection({ dark }) {
           {/* ================= CONTACT INFO ================= */}
           <div className="mb-6 space-y-2 opacity-80 text-sm">
             <p>
-              <span className="font-medium">Email:</span> work.parthag23@gmail.com
+              <span className="font-medium">Email:</span>{" "}
+              work.parthag23@gmail.com
             </p>
             <p>
               <span className="font-medium">Location:</span> India
@@ -124,7 +134,6 @@ export default function AboutSection({ dark }) {
               MY STORY
             </button>
           </div>
-
         </div>
 
         {/* ================= RIGHT IMAGE ================= */}
@@ -144,7 +153,6 @@ export default function AboutSection({ dark }) {
             className="w-[380px] rounded-3xl shadow-lg"
           />
         </motion.div>
-
       </div>
     </section>
   );
