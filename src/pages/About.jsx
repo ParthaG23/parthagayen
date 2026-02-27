@@ -6,33 +6,37 @@ import Skills from "../components/sections/SkillSection";
 import Services from "../components/sections/ServicesSections";
 import Education from "../components/sections/Education";
 
-import profileImg from "../../public/images/about.jpg";
+import profileImg from "../assets/images/about.webp";
 import { motion } from "framer-motion";
 
 export default function AboutPage({ dark }) {
   return (
     <div
-      className={`transition-colors duration-500 ${
+      className={`min-h-screen transition-colors duration-500 ${
         dark ? "bg-[#0b0b0b] text-white" : "bg-[#f2f2f2] text-black"
       }`}
     >
       <Navbar dark={dark} />
 
-      <main className="pt-24 lg:pt-28">
+      <main className="pt-20 lg:pt-28">
 
-        {/* ===== MOBILE ONLY PROFILE ===== */}
-        <div className="lg:hidden flex flex-col items-center text-center  mt-10">
+        {/* MOBILE PROFILE */}
+        <div className="lg:hidden flex flex-col items-center text-center py-12">
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
             className="relative"
           >
             <img
               src={profileImg}
-              alt="profile"
-              className="w-36 h-36 rounded-full object-cover shadow-xl border-4 border-lime-400"
+              alt="Partha Gayen"
+              loading="lazy"
+              width="144"
+              height="144"
+              className="w-36 h-36 rounded-full object-cover shadow-md border-4 border-lime-400"
             />
           </motion.div>
 
@@ -40,7 +44,7 @@ export default function AboutPage({ dark }) {
             Partha Gayen
           </h2>
 
-          <p className="text-sm opacity-70 mt-2 px-6 leading-relaxed">
+          <p className="text-sm opacity-70 mt-2 px-6 leading-relaxed max-w-xs">
             MERN Stack Developer & B.Tech CSE Student passionate about
             building scalable web applications.
           </p>
@@ -48,10 +52,12 @@ export default function AboutPage({ dark }) {
         </div>
 
         {/* Sections */}
-        <AboutSection dark={dark} />
-        <Education dark={dark} />
-        <Skills dark={dark} />
-        <Services dark={dark} />
+        <div className="space-y-16 lg:space-y-24">
+          <AboutSection dark={dark} />
+          <Education dark={dark} />
+          <Skills dark={dark} />
+          <Services dark={dark} />
+        </div>
 
       </main>
 

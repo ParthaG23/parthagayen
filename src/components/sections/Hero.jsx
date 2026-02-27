@@ -1,12 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { HiOutlineHand } from "react-icons/hi";
 import { useState, useEffect } from "react";
-import heroImg from "../../../public/images/hero.jpg";
+import heroImg from "../../assets/images/hero.webp"; 
+// change to .jpg if needed
 
 export default function Hero({ dark }) {
   const [showHand, setShowHand] = useState(false);
 
-  // Loop Hi ↔ Hand every 2 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setShowHand(prev => !prev);
@@ -18,149 +18,74 @@ export default function Hero({ dark }) {
   return (
     <section
       id="home"
-      className={`
-        relative min-h-screen
-        flex items-center justify-center
-        px-6 pt-32 pb-24
-        transition-colors duration-500
-        ${dark ? "bg-[#0f0f0f] text-white" : "bg-[#f5f5f5] text-gray-900"}
-      `}
+      className={`min-h-screen flex items-center justify-center px-6 pt-32 pb-24 transition-colors duration-500 ${
+        dark ? "bg-[#0f0f0f] text-white" : "bg-[#f5f5f5] text-gray-900"
+      }`}
     >
       <div className="max-w-6xl mx-auto w-full">
 
-        {/* ================= MOBILE ================= */}
-        <div className="flex flex-col items-center text-center gap-6 lg:hidden">
+        {/* RESPONSIVE GRID */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 items-center gap-12">
 
-          <p className="tracking-widest text-xs opacity-70">
-            PARTHA GAYEN
-          </p>
+          {/* LEFT CONTENT */}
+          <div className="text-center lg:text-left">
+            <p className="tracking-widest mb-4 text-sm opacity-70">
+              PARTHA GAYEN
+            </p>
 
-          <h1 className="text-4xl font-extrabold">
-            WEB DEVELOPER
-          </h1>
+            <h1 className="font-extrabold text-4xl lg:text-[clamp(48px,5vw,80px)] leading-none">
+              WEB
+            </h1>
+          </div>
 
-          {/* IMAGE + BADGE */}
-          <div className="relative">
-            <img
+          {/* CENTER IMAGE */}
+          <div className="relative flex justify-center my-10 lg:my-0">
+
+            <motion.img
               src={heroImg}
-              alt="profile"
-              className="w-[240px] aspect-[3/4] object-cover rounded-[28px] shadow-xl"
+              alt="Partha Gayen"
+              loading="eager"
+              fetchPriority="high"
+              width="340"
+              height="450"
+              animate={{ y: [0, -8, 0] }}
+              transition={{
+                repeat: Infinity,
+                duration: 5,
+                ease: "easeInOut"
+              }}
+              className="w-[240px] lg:w-[340px] aspect-[3/4] object-cover rounded-[32px] shadow-lg"
             />
 
-            {/* Smooth Badge */}
+            {/* BADGE */}
             <motion.div
-              className="absolute -left-6 bottom-10
-                         w-14 h-14 rounded-full
-                         bg-lime-400 flex items-center
-                         justify-center shadow-lg"
+              className="absolute -left-6 lg:-left-10 bottom-10 lg:bottom-16
+                         w-14 h-14 lg:w-16 lg:h-16 rounded-full
+                         bg-lime-400 flex items-center justify-center shadow-md"
             >
               <AnimatePresence mode="wait">
                 {!showHand ? (
                   <motion.span
                     key="hi"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    transition={{ duration: 0.3 }}
-                    className="text-black font-semibold text-sm"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="text-black font-semibold text-sm lg:text-base"
                   >
                     Hi
                   </motion.span>
                 ) : (
                   <motion.div
                     key="hand"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ 
-                      opacity: 1, 
-                      scale: 1,
-                      rotate: [0, 20, -20, 20, 0]
+                    initial={{ opacity: 0 }}
+                    animate={{
+                      opacity: 1,
+                      rotate: [0, 15, -15, 15, 0]
                     }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    transition={{
-                      opacity: { duration: 0.3 },
-                      scale: { duration: 0.3 },
-                      rotate: { duration: 1 }
-                    }}
+                    exit={{ opacity: 0 }}
+                    transition={{ rotate: { duration: 0.8 } }}
                   >
-                    <HiOutlineHand className="text-black text-xl" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          </div>
-
-          <p className="text-sm max-w-xs opacity-70 leading-relaxed">
-            Full-Stack Web Developer & Data Analytics Enthusiast.
-            I build scalable web applications and transform data
-            into meaningful insights that drive real impact.
-          </p>
-        </div>
-
-        {/* ================= DESKTOP ================= */}
-        <div className="hidden lg:grid lg:grid-cols-3 items-center gap-12">
-
-          {/* LEFT */}
-          <div>
-            <p className="tracking-widest mb-4 text-sm opacity-70">
-              PARTHA GAYEN
-            </p>
-
-            <h1 className="font-extrabold leading-none text-[clamp(48px,5vw,80px)]">
-              WEB
-            </h1>
-          </div>
-
-          {/* IMAGE + BADGE */}
-          <div className="relative flex justify-center">
-
-            <motion.img
-              src={heroImg}
-              alt="profile"
-              animate={{ y: [0, -12, 0] }}
-              transition={{
-                repeat: Infinity,
-                duration: 4,
-                ease: "easeInOut"
-              }}
-              className="w-[340px] aspect-[3/4] object-cover rounded-[32px] shadow-2xl"
-            />
-
-            {/* Smooth Badge */}
-            <motion.div
-              className="absolute -left-8 bottom-16
-                         w-16 h-16 rounded-full
-                         bg-lime-400 flex items-center
-                         justify-center shadow-lg"
-            >
-              <AnimatePresence mode="wait">
-                {!showHand ? (
-                  <motion.span
-                    key="hi-desktop"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    transition={{ duration: 0.3 }}
-                    className="text-black font-semibold"
-                  >
-                    Hi
-                  </motion.span>
-                ) : (
-                  <motion.div
-                    key="hand-desktop"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ 
-                      opacity: 1, 
-                      scale: 1,
-                      rotate: [0, 20, -20, 20, 0]
-                    }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    transition={{
-                      opacity: { duration: 0.3 },
-                      scale: { duration: 0.3 },
-                      rotate: { duration: 1 }
-                    }}
-                  >
-                    <HiOutlineHand className="text-black text-2xl" />
+                    <HiOutlineHand className="text-black text-xl lg:text-2xl" />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -168,16 +93,15 @@ export default function Hero({ dark }) {
 
           </div>
 
-          {/* RIGHT */}
-          <div className="text-right max-w-md">
-            <h1 className="font-extrabold leading-none text-[clamp(48px,5vw,80px)]">
+          {/* RIGHT CONTENT */}
+          <div className="text-center lg:text-right max-w-md mx-auto lg:mx-0">
+            <h1 className="font-extrabold text-4xl lg:text-[clamp(48px,5vw,80px)] leading-none">
               DEVELOPER
             </h1>
 
             <p className="mt-6 text-base opacity-70 leading-relaxed">
               Full-Stack Web Developer & Data Analytics Enthusiast.
-              Building modern web experiences and data-driven solutions
-              that are scalable, efficient, and impactful.
+              Building modern web experiences and scalable solutions.
             </p>
           </div>
 

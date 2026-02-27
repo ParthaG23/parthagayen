@@ -1,34 +1,47 @@
+import cineverseImg from "../assets/projects/cineverse.webp";
+
+import tapasvImg from "../assets/projects/tapasvi.webp";
+import movienestImg from "../assets/projects/movienest.webp"
+
 const projects = [
   {
     id: 1,
-    title: "MERN E-Commerce App",
+    title: "CineVerse — Movie Information Platform",
     description:
-      "Full-stack e-commerce platform with authentication, cart system, admin dashboard and Stripe integration.",
-    tech: ["React", "Node", "Express", "MongoDB"],
-    github: "https://github.com/yourusername/project1",
-    live: "https://yourprojectlive.com",
-    image: "/images/project1.jpg",
+      "Built a responsive movie information platform with categorized content and structured navigation. Focused on improving user experience through clean UI design and dynamic rendering.",
+    tech: ["HTML", "CSS", "JavaScript", "React.js","Tailwind"],
+    github: "https://github.com/ParthaG23/CineVerse",
+    live: "https://cine-verse-fpoj.vercel.app/",
+    image:  cineverseImg,
+    date: "Jan 2026",
   },
-  {
-    id: 2,
-    title: "Portfolio Website",
+   {
+    id:2,
+    title: "MoviesNest — Movie Information and download Platform",
     description:
-      "Animated personal portfolio built with React, TailwindCSS and Framer Motion.",
-    tech: ["React", "Tailwind", "Framer Motion"],
-    github: "https://github.com/yourusername/project2",
-    live: "https://yourportfolio.com",
-    image: "/images/project2.jpg",
+      "Built a responsive movie information platform with categorized content and structured navigation. Focused on improving user experience through clean UI design and dynamic rendering.",
+    tech: ["HTML", "CSS", "JavaScript", "React.js","Tailwind"],
+    github: "https://github.com/ParthaG23/MovieNest",
+    live: "https://movie-nest-black.vercel.app/",
+    image: movienestImg ,
+    date: "Jan 2026",
   },
+
+
+
   {
     id: 3,
-    title: "Data Analytics Dashboard",
+    title: "Tapasvi — School Website",
     description:
-      "Interactive dashboard built using Python, Pandas and visualization tools.",
-    tech: ["Python", "Pandas", "Power BI"],
-    github: "https://github.com/yourusername/project3",
-    live: "#",
-    image: "/images/project3.jpg",
+      "Designed and developed a responsive school website featuring sections for admissions, facilities, and events, delivering a clean and user-friendly interface.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    github: "https://github.com/ParthaG23/tapasvi",
+    live: "https://parthag23.github.io/tapasvi/",
+    image: tapasvImg,
+    date: "Apr 2025",
   },
+    
+
 ];
 
 export default projects;

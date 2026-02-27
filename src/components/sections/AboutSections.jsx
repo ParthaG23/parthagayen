@@ -6,7 +6,8 @@ import {
   FaInstagram,
   FaEnvelope
 } from "react-icons/fa";
-import aboutImg from "../../../public/images/about.jpg";
+
+import aboutImg from "../../assets/images/about.webp";
 
 export default function AboutSection({ dark }) {
   const navigate = useNavigate();
@@ -14,65 +15,68 @@ export default function AboutSection({ dark }) {
   return (
     <section
       id="about"
-   className={`
-        relative min-h-screen
-        flex items-center justify-center
-        px-6 pt-32 pb-24
-        transition-colors duration-500
-        ${dark ? "bg-[#0f0f0f] text-white" : "bg-[#f5f5f5] text-gray-900"}
-      `}
+      className={`py-20 lg:py-28 transition-colors duration-500 ${
+        dark ? "bg-[#0f0f0f] text-white" : "bg-[#f5f5f5] text-gray-900"
+      }`}
     >
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
         {/* ================= LEFT CONTENT ================= */}
-        <div>
+        <div className="text-center lg:text-left">
 
-          <h2 className="text-5xl font-extrabold mb-6 tracking-wide">
+          {/* Heading */}
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 lg:mb-6 tracking-wide">
             ABOUT ME
           </h2>
 
-          <p className="leading-relaxed max-w-xl mb-10 opacity-80">
+          {/* Description */}
+          <p className="leading-relaxed max-w-xl mx-auto lg:mx-0 mb-8 opacity-80 text-sm sm:text-base">
             Hi, I'm Partha — a passionate Computer Science student and
-            aspiring Full-Stack Developer. I love building scalable web
-            applications and learning modern technologies that solve
-            real-world problems.
+            aspiring Full-Stack Developer.
           </p>
 
-          {/* STATS */}
-          <div className="grid grid-cols-3 gap-10 mb-10">
-
+          {/* ================= STATS ================= */}
+          <div className="grid grid-cols-3 gap-6 lg:gap-10 mb-8 justify-items-center lg:justify-items-start">
             <div>
-              <h3 className="text-lime-400 text-4xl font-bold">2026</h3>
-              <p className="text-sm mt-2 opacity-70">
+              <h3 className="text-lime-400 text-2xl sm:text-3xl lg:text-4xl font-bold">
+                2026
+              </h3>
+              <p className="text-xs sm:text-sm mt-2 opacity-70">
                 Expected Graduation
               </p>
             </div>
 
             <div>
-              <h3 className="text-lime-400 text-4xl font-bold">10+</h3>
-              <p className="text-sm mt-2 opacity-70">
+              <h3 className="text-lime-400 text-2xl sm:text-3xl lg:text-4xl font-bold">
+                10+
+              </h3>
+              <p className="text-xs sm:text-sm mt-2 opacity-70">
                 Academic Projects
               </p>
             </div>
 
             <div>
-              <h3 className="text-lime-400 text-4xl font-bold">5+</h3>
-              <p className="text-sm mt-2 opacity-70">
+              <h3 className="text-lime-400 text-2xl sm:text-3xl lg:text-4xl font-bold">
+                5+
+              </h3>
+              <p className="text-xs sm:text-sm mt-2 opacity-70">
                 Technologies Learned
               </p>
             </div>
-
           </div>
 
-          {/* CONTACT */}
-          <div className="mb-8 space-y-2 opacity-80">
-            <p><span className="font-medium">Email:</span> work.parthag23@gmail.com</p>
-            <p><span className="font-medium">Location:</span> India</p>
+          {/* ================= CONTACT INFO ================= */}
+          <div className="mb-6 space-y-2 opacity-80 text-sm">
+            <p>
+              <span className="font-medium">Email:</span> work.parthag23@gmail.com
+            </p>
+            <p>
+              <span className="font-medium">Location:</span> India
+            </p>
           </div>
 
-          {/* SOCIAL ICONS */}
-          <div className="flex gap-6 text-xl mb-10">
-
+          {/* ================= SOCIAL ================= */}
+          <div className="flex justify-center lg:justify-start gap-6 text-lg mb-8">
             <a
               href="https://github.com/ParthaG23"
               target="_blank"
@@ -106,34 +110,40 @@ export default function AboutSection({ dark }) {
             >
               <FaEnvelope />
             </a>
-
           </div>
 
-          {/* BUTTON */}
-          <button
-            onClick={() => navigate("/about")}
-            className="px-8 py-3 rounded-full border border-lime-400
-                       text-lime-400 hover:bg-lime-400 hover:text-black
-                       transition-all duration-300"
-          >
-            MY STORY
-          </button>
+          {/* ================= BUTTON ================= */}
+          <div className="flex justify-center lg:justify-start">
+            <button
+              onClick={() => navigate("/about")}
+              className="px-6 py-2.5 rounded-full border border-lime-400
+                         text-lime-400 text-sm sm:text-base
+                         hover:bg-lime-400 hover:text-black
+                         transition-all duration-300"
+            >
+              MY STORY
+            </button>
+          </div>
 
         </div>
 
         {/* ================= RIGHT IMAGE ================= */}
         <motion.div
-  initial={{ rotate: -5, opacity: 0 }}
-  whileInView={{ rotate: 0, opacity: 1 }}
-  transition={{ duration: 0.8 }}
-  className="hidden lg:flex justify-center"
->
-  <img
-    src={aboutImg}
-    alt="about"
-    className="w-[380px] rounded-3xl shadow-2xl"
-  />
-</motion.div>
+          initial={{ rotate: -5, opacity: 0 }}
+          whileInView={{ rotate: 0, opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="hidden lg:flex justify-center"
+        >
+          <img
+            src={aboutImg}
+            alt="About Partha Gayen"
+            loading="lazy"
+            width="380"
+            height="500"
+            className="w-[380px] rounded-3xl shadow-lg"
+          />
+        </motion.div>
 
       </div>
     </section>
