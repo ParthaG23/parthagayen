@@ -4,6 +4,7 @@ import { FiExternalLink } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import projects from "../../data/Project";
 
+
 export default function ProjectsPreview({ dark }) {
   const recentProjects = projects.slice(0, 3);
 
@@ -136,9 +137,10 @@ export default function ProjectsPreview({ dark }) {
 
         {/* ================= VIEW ALL BUTTON ================= */}
         <div className="text-center mt-20 lg:mt-28">
-          <Link
+         
+              <Link
             to="/projects"
-            className="inline-block px-8 lg:px-12 py-3 lg:py-4 rounded-full
+            className="inline-block px-8 lg:px-12 py-3 lg:py-4 rounded-full  
                        border-2 border-lime-400 text-lime-400
                        text-sm lg:text-base font-semibold
                        hover:bg-lime-400 hover:text-black
@@ -146,6 +148,8 @@ export default function ProjectsPreview({ dark }) {
           >
             View All Projects
           </Link>
+         
+        
         </div>
 
       </div>

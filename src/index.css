@@ -1,28 +1,170 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ===============================
+   GLOBAL SETTINGS
+================================= */
+
 html {
   scroll-behavior: smooth;
 }
 
-body.dark-mode {
-  background: #0b0b0b;
-}
-
-body.light-mode {
-  background: #e9e9e9;
-}
-body::-webkit-scrollbar {
-  display: none;
-}
-
-body {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
 html, body, #root {
   width: 100%;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ===============================
+   DARK MODE (Optimized Gradient)
+================================= */
+
+body.dark-mode {
+  background: linear-gradient(
+    135deg,
+    #000000 0%,
+    #0b0f14 50%,
+    #111827 100%
+  );
+  color: #ffffff;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* Optimized subtle grid (lighter repaint) */
+body.dark-mode::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(
+    rgba(163, 230, 53, 0.03) 1px,
+    transparent 1px
+  );
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ===============================
+   LIGHT MODE
+================================= */
+
+body.light-mode {
+  background: linear-gradient(
+    135deg,
+    #f8fafc 0%,
+    #f1f5f9 100%
+  );
+  color: #111827;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* ===============================
+   SELECTION
+================================= */
+
+::selection {
+  background: #a3e635;
+  color: #000;
+}
+
+/* ===============================
+   REMOVE GLOBAL TRANSITION (IMPORTANT)
+================================= */
+
+/* ❌ Removed: * { transition: ... } */
+/* Instead use Tailwind transition utilities per component */
+
+/* ===============================
+   OPTIMIZED GLOW (GPU FRIENDLY)
+================================= */
+
+.glow-lime {
+  box-shadow: 0 0 25px rgba(163, 230, 53, 0.25);
+  will-change: box-shadow;
+}
+
+/* ========================= */
+/* LUXURY GLOW (Reduced Layers) */
+/* ========================= */
+
+@keyframes luxuryGlowDark {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(163, 230, 53, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(163, 230, 53, 0.5);
+  }
+}
+
+@keyframes luxuryGlowLight {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(99, 102, 241, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(99, 102, 241, 0.25);
+  }
+}
+
+/* ========================= */
+/* BUTTON GLOW (Reduced) */
+/* ========================= */
+
+@keyframes luxuryBtnGlowDark {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(163,230,53,0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(163,230,53,0.4);
+  }
+}
+
+@keyframes luxuryBtnGlowLight {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(99,102,241,0.1);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(99,102,241,0.2);
+  }
+}
+
+/* ===============================
+   CUSTOM CURSOR (Safer)
+================================= */
+
+/* Only hide cursor if custom cursor exists */
+body.custom-cursor {
+  cursor: none;
+}
+
+body.custom-cursor a,
+body.custom-cursor button {
+  cursor: none;
+}
+
+/* ===============================
+   PARTICLES (Optimized)
+================================= */
+
+.cursor-particle-dark,
+.cursor-particle-light {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform, opacity;
+}
+
+.cursor-particle-dark {
+  background: radial-gradient(circle, #a3e635, #65a30d);
+  box-shadow: 0 0 15px rgba(163,230,53,0.6);
+}
+
+.cursor-particle-light {
+  background: radial-gradient(circle, #6366f1, #1f2937);
+  box-shadow: 0 0 12px rgba(99,102,241,0.5);
 }
