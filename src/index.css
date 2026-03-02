@@ -19,7 +19,15 @@ html, body, #root {
 }
 
 /* ===============================
-   DARK MODE (Optimized Gradient)
+   CUSTOM CURSOR (GLOBAL HIDE)
+================================= */
+
+html, body, a, button, input, textarea, div, span {
+  cursor: none !important;
+}
+
+/* ===============================
+   DARK MODE (Premium Gradient)
 ================================= */
 
 body.dark-mode {
@@ -33,7 +41,7 @@ body.dark-mode {
   transition: background 0.4s ease, color 0.4s ease;
 }
 
-/* Optimized subtle grid (lighter repaint) */
+/* Subtle tech grid */
 body.dark-mode::before {
   content: "";
   position: fixed;
@@ -62,7 +70,7 @@ body.light-mode {
 }
 
 /* ===============================
-   SELECTION
+   TEXT SELECTION
 ================================= */
 
 ::selection {
@@ -71,14 +79,7 @@ body.light-mode {
 }
 
 /* ===============================
-   REMOVE GLOBAL TRANSITION (IMPORTANT)
-================================= */
-
-/* ❌ Removed: * { transition: ... } */
-/* Instead use Tailwind transition utilities per component */
-
-/* ===============================
-   OPTIMIZED GLOW (GPU FRIENDLY)
+   GLOW UTILITIES
 ================================= */
 
 .glow-lime {
@@ -86,9 +87,9 @@ body.light-mode {
   will-change: box-shadow;
 }
 
-/* ========================= */
-/* LUXURY GLOW (Reduced Layers) */
-/* ========================= */
+/* ===============================
+   LUXURY GLOW ANIMATIONS
+================================= */
 
 @keyframes luxuryGlowDark {
   0%, 100% {
@@ -108,9 +109,9 @@ body.light-mode {
   }
 }
 
-/* ========================= */
-/* BUTTON GLOW (Reduced) */
-/* ========================= */
+/* ===============================
+   BUTTON GLOW
+================================= */
 
 @keyframes luxuryBtnGlowDark {
   0%, 100% {
@@ -131,21 +132,41 @@ body.light-mode {
 }
 
 /* ===============================
-   CUSTOM CURSOR (Safer)
+   CUSTOM CURSOR STYLES
+   (Matches Your CustomCursor.jsx)
 ================================= */
 
-/* Only hide cursor if custom cursor exists */
-body.custom-cursor {
-  cursor: none;
+.custom-cursor {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease;
+  will-change: transform;
 }
 
-body.custom-cursor a,
-body.custom-cursor button {
-  cursor: none;
+/* Dark mode cursor */
+.custom-cursor.dark {
+  background: radial-gradient(circle, #a3e635, #65a30d);
+  box-shadow: 0 0 20px rgba(163, 230, 53, 0.7);
+}
+
+/* Light mode cursor */
+.custom-cursor.light {
+  background: radial-gradient(circle, #6366f1, #1f2937);
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.6);
+}
+
+/* Hover scale effect */
+.cursor-hover {
+  transform: translate(-50%, -50%) scale(1.8);
 }
 
 /* ===============================
-   PARTICLES (Optimized)
+   PARTICLE SUPPORT (Optional)
 ================================= */
 
 .cursor-particle-dark,
