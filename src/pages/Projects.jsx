@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import projects from "../data/Project";
@@ -12,7 +13,6 @@ export default function Projects({ dark }) {
     >
       <Navbar dark={dark} />
 
-      {/* EXTRA TOP GAP */}
       <main className="pt-32 lg:pt-40 px-6 pb-24">
 
         {/* ================= HEADING ================= */}
@@ -62,7 +62,8 @@ export default function Projects({ dark }) {
                     {project.description}
                   </p>
 
-                  <div className="flex flex-wrap justify-center lg:justify-start gap-3">
+                  {/* ================= TECH STACK ================= */}
+                  <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-8">
                     {project.tech.map((tech, i) => (
                       <span
                         key={i}
@@ -72,9 +73,41 @@ export default function Projects({ dark }) {
                       </span>
                     ))}
                   </div>
+
+                  {/* ================= GITHUB + LIVE DEMO ================= */}
+                  <div className="flex justify-center lg:justify-start gap-6">
+
+                    {/* GitHub Button */}
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-5 py-2 rounded-full border border-white/20 hover:border-lime-400 hover:text-lime-400 transition-all duration-300 text-sm font-medium"
+                      >
+                        <FaGithub />
+                        GitHub
+                      </a>
+                    )}
+
+                    {/* Live Demo Button */}
+                    {project.live && (
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-5 py-2 rounded-full border border-white/20 hover:border-lime-400 hover:text-lime-400 transition-all duration-300 text-sm font-medium"
+                      >
+                        <FaExternalLinkAlt />
+                        Live Demo
+                      </a>
+                    )}
+
+                  </div>
+
                 </motion.div>
 
-                {/* ================= IMAGE (FULL CLICKABLE) ================= */}
+                {/* ================= IMAGE ================= */}
                 <motion.div
                   initial={{ opacity: 0, x: isEven ? 60 : -60 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -83,7 +116,7 @@ export default function Projects({ dark }) {
                   className={`${isEven ? "lg:order-2" : "lg:order-1"}`}
                 >
                   <a
-                    href={project.github}
+                    href={project.live || project.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="relative group block rounded-3xl overflow-hidden shadow-lg"

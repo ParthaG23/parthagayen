@@ -1,9 +1,7 @@
 import { motion } from "framer-motion";
-import { FaGithub } from "react-icons/fa";
-import { FiExternalLink } from "react-icons/fi";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import projects from "../../data/Project";
-
 
 export default function ProjectsPreview({ dark }) {
   const recentProjects = projects.slice(0, 3);
@@ -64,8 +62,8 @@ export default function ProjectsPreview({ dark }) {
                     {project.description}
                   </p>
 
-                  {/* Tech Stack */}
-                  <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-6">
+                  {/* ================= TECH STACK ================= */}
+                  <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-8">
                     {project.tech.map((tech, i) => (
                       <span
                         key={i}
@@ -76,31 +74,43 @@ export default function ProjectsPreview({ dark }) {
                     ))}
                   </div>
 
-                  {/* Buttons */}
-                  <div className="flex justify-center lg:justify-start gap-6 text-sm">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 hover:text-lime-400 transition"
-                    >
-                      <FaGithub /> GitHub
-                    </a>
+                  {/* ================= GITHUB + LIVE BUTTONS ================= */}
+                  <div className="flex justify-center lg:justify-start gap-6">
+
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-5 py-2 rounded-full 
+                                   border border-white/20 
+                                   hover:border-lime-400 hover:text-lime-400
+                                   transition-all duration-300 text-sm font-medium"
+                      >
+                        <FaGithub />
+                        GitHub
+                      </a>
+                    )}
 
                     {project.live && project.live !== "#" && (
                       <a
                         href={project.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 hover:text-lime-400 transition"
+                        className="flex items-center gap-2 px-5 py-2 rounded-full 
+                                   border border-white/20 
+                                   hover:border-lime-400 hover:text-lime-400
+                                   transition-all duration-300 text-sm font-medium"
                       >
-                        <FiExternalLink /> Live Demo
+                        <FaExternalLinkAlt />
+                        Live Demo
                       </a>
                     )}
+
                   </div>
                 </motion.div>
 
-                {/* ================= IMAGE (FULL CLICKABLE CARD) ================= */}
+                {/* ================= IMAGE ================= */}
                 <motion.div
                   initial={{ opacity: 0, x: isEven ? 40 : -40 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -109,10 +119,10 @@ export default function ProjectsPreview({ dark }) {
                   className={`${isEven ? "lg:order-2" : "lg:order-1"}`}
                 >
                   <a
-                    href={project.github}
+                    href={project.live || project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="relative group block rounded-2xl overflow-hidden shadow-lg"
+                    className="relative group block rounded-3xl overflow-hidden shadow-lg"
                   >
                     <img
                       src={project.image}
@@ -120,10 +130,9 @@ export default function ProjectsPreview({ dark }) {
                       loading="lazy"
                       width="800"
                       height="500"
-                      className="w-full h-[240px] sm:h-[320px] lg:h-[420px] object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-[240px] sm:h-[320px] lg:h-[420px] object-cover transition-transform duration-700 group-hover:scale-105"
                     />
 
-                    {/* Overlay */}
                     <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-white text-sm lg:text-lg font-semibold">
                       View Project
                     </div>
@@ -137,8 +146,7 @@ export default function ProjectsPreview({ dark }) {
 
         {/* ================= VIEW ALL BUTTON ================= */}
         <div className="text-center mt-20 lg:mt-28">
-         
-              <Link
+          <Link
             to="/projects"
             className="inline-block px-8 lg:px-12 py-3 lg:py-4 rounded-full  
                        border-2 border-lime-400 text-lime-400
@@ -148,8 +156,6 @@ export default function ProjectsPreview({ dark }) {
           >
             View All Projects
           </Link>
-         
-        
         </div>
 
       </div>

@@ -5,12 +5,16 @@ import {
   FaInstagram,
   FaArrowUp
 } from "react-icons/fa";
+import { HashLink } from "react-router-hash-link";
+import { Link } from "react-router-dom";
 
 export default function Footer({ dark }) {
   return (
-    <footer className="relative py-16 px-6 transition-colors duration-500
-                       bg-gray-100 dark:bg-[#0f0f0f]">
-
+    <footer
+      className={`relative py-16 px-6 transition-colors duration-500 ${
+        dark ? "bg-[#0f0f0f] text-white" : "bg-gray-100 text-gray-900"
+      }`}
+    >
       <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12">
 
         {/* ================= LEFT ================= */}
@@ -33,16 +37,49 @@ export default function Footer({ dark }) {
           </h4>
 
           <div className="flex flex-col gap-3 text-sm">
-            {["Home", "About", "Projects", "Contact"].map((item, i) => (
-              <motion.a
-                key={i}
-                href={`#${item.toLowerCase()}`}
-                whileHover={{ x: 5 }}
+
+            {/* Home */}
+            <motion.div whileHover={{ x: 5 }}>
+              <Link
+                to="/"
                 className="opacity-70 hover:opacity-100 transition"
               >
-                {item}
-              </motion.a>
-            ))}
+                Home
+              </Link>
+            </motion.div>
+
+            {/* About (Section on Home Page) */}
+            <motion.div whileHover={{ x: 5 }}>
+              <HashLink
+                smooth
+                to="/about"
+                className="opacity-70 hover:opacity-100 transition"
+              >
+                About
+              </HashLink>
+            </motion.div>
+
+            {/* Projects Page */}
+            <motion.div whileHover={{ x: 5 }}>
+              <Link
+                to="/projects"
+                className="opacity-70 hover:opacity-100 transition"
+              >
+                Projects
+              </Link>
+            </motion.div>
+
+            {/* Contact (Section on Home Page) */}
+            <motion.div whileHover={{ x: 5 }}>
+              <HashLink
+                smooth
+                to="/contact"
+                className="opacity-70 hover:opacity-100 transition"
+              >
+                Contact
+              </HashLink>
+            </motion.div>
+
           </div>
         </div>
 
@@ -53,10 +90,12 @@ export default function Footer({ dark }) {
           </h4>
 
           <div className="flex gap-6 text-xl">
+
             <motion.a
               whileHover={{ scale: 1.2 }}
               href="https://github.com/ParthaG23"
               target="_blank"
+              rel="noopener noreferrer"
               className="hover:text-lime-500 transition"
             >
               <FaGithub />
@@ -66,6 +105,7 @@ export default function Footer({ dark }) {
               whileHover={{ scale: 1.2 }}
               href="https://www.linkedin.com/in/partha-gayen/"
               target="_blank"
+              rel="noopener noreferrer"
               className="hover:text-lime-500 transition"
             >
               <FaLinkedin />
@@ -75,10 +115,12 @@ export default function Footer({ dark }) {
               whileHover={{ scale: 1.2 }}
               href="https://instagram.com/mr.parthag23"
               target="_blank"
+              rel="noopener noreferrer"
               className="hover:text-lime-500 transition"
             >
               <FaInstagram />
             </motion.a>
+
           </div>
 
           {/* Resume Button */}
@@ -89,7 +131,7 @@ export default function Footer({ dark }) {
                        border-2 border-lime-500
                        rounded-full text-sm font-semibold
                        hover:bg-lime-500 hover:text-black
-                       transition"
+                       transition-all duration-300"
           >
             Download CV
           </a>
@@ -97,8 +139,11 @@ export default function Footer({ dark }) {
       </div>
 
       {/* ================= BOTTOM ================= */}
-      <div className="border-t border-gray-300 dark:border-white/10 mt-12 pt-6
-                      text-center text-sm opacity-60">
+      <div
+        className={`border-t mt-12 pt-6 text-center text-sm opacity-60 ${
+          dark ? "border-white/10" : "border-gray-300"
+        }`}
+      >
         © {new Date().getFullYear()} Partha Gayen. All rights reserved.
       </div>
 

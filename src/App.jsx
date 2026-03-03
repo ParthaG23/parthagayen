@@ -4,21 +4,25 @@ import AppRoutes from "./routes/AppRoutes";
 import ThemeToggle from "./components/ui/ThemeToggle";
 import CustomCursor from "./components/ui/CustomCursor";
 import ParticleBurst from "./components/ui/ParticleBurst";
+import ScrollToTop from "./components/ui/ScrollToTop";
 
 function App() {
   const [dark, setDark] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(true);
+  const [isDesktop, setIsDesktop] = useState(() => window.innerWidth >= 768);
 
-  // Detect mobile once
+  // Optimized device detection (runs only when breakpoint changes)
   useEffect(() => {
-    const checkDevice = () => {
-      setIsDesktop(window.innerWidth >= 768);
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+
+    const handleChange = (e) => {
+      setIsDesktop(e.matches);
     };
 
-    checkDevice();
-    window.addEventListener("resize", checkDevice);
+    mediaQuery.addEventListener("change", handleChange);
 
-    return () => window.removeEventListener("resize", checkDevice);
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange);
+    };
   }, []);
 
   return (
@@ -26,12 +30,17 @@ function App() {
       className={`${dark ? "dark" : ""} w-full min-h-screen overflow-x-hidden`}
     >
       <BrowserRouter>
-        {/* Performance Mode: Effects only on Desktop */}
+
+        {/* FIXED: Scroll reset on route change */}
+        <ScrollToTop />
+
+        {/* Effects only on Desktop (performance mode) */}
         {isDesktop && <CustomCursor dark={dark} />}
         {isDesktop && <ParticleBurst dark={dark} />}
 
         <ThemeToggle dark={dark} setDark={setDark} />
         <AppRoutes dark={dark} />
+
       </BrowserRouter>
     </div>
   );
