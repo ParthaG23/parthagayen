@@ -4,7 +4,7 @@ import AppRoutes from "./routes/AppRoutes";
 import ThemeToggle from "./components/ui/ThemeToggle";
 import CustomCursor from "./components/ui/CustomCursor";
 import ParticleBurst from "./components/ui/ParticleBurst";
-import ScrollToTop from "./components/ui/ScrollToTop";
+
 
 function App() {
   const [dark, setDark] = useState(false);
@@ -31,8 +31,7 @@ function App() {
     >
       <BrowserRouter>
 
-        {/* FIXED: Scroll reset on route change */}
-        <ScrollToTop />
+   
 
         {/* Effects only on Desktop (performance mode) */}
         {isDesktop && <CustomCursor dark={dark} />}
