@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+import { motion} from "framer-motion";
 
 import {
   FaGithub,
@@ -180,12 +181,22 @@ export default function AboutSection({ dark }) {
 
         {/* RIGHT IMAGE */}
         <div className="hidden lg:flex justify-center">
-          <img
-            src={aboutImg}
-            alt="About Partha Gayen"
-            loading="lazy"
-            className="w-[380px] rounded-3xl shadow-lg"
-          />
+         <motion.img
+              src={aboutImg}
+              alt="Partha Gayen"
+              loading="eager"
+              fetchPriority="high"
+              width="340"
+              height="450"
+              animate={{ y: [0, -8, 0] }}
+              transition={{
+                repeat: Infinity,
+                duration: 5,
+                ease: "easeInOut",
+              }}
+              style={{ willChange: "transform" }}
+              className="w-[240px] lg:w-[340px] aspect-[3/4] object-cover rounded-[32px] shadow-lg"
+            />
         </div>
 
       </div>
