@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
-import heroImg from "../../assets/images/hero.webp";
+import heroImg from "../../assets/images/nav.webp";
 
 export default function Navbar({ dark }) {
   const [scrolled, setScrolled] = useState(false);
@@ -11,7 +11,7 @@ export default function Navbar({ dark }) {
   useEffect(() => {
     const handleScroll = () => {
       const shouldScroll = window.scrollY > 80;
-      setScrolled(prev => (prev !== shouldScroll ? shouldScroll : prev));
+      setScrolled((prev) => (prev !== shouldScroll ? shouldScroll : prev));
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -45,9 +45,7 @@ export default function Navbar({ dark }) {
             {/* PROFILE (CLICKABLE) */}
             <Link
               to="/"
-              onClick={() =>
-                window.scrollTo({ top: 0, behavior: "smooth" })
-              }
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="relative flex items-center justify-center group"
             >
               <div className="p-[2px] rounded-full bg-lime-400 transition group-hover:scale-105">
@@ -70,24 +68,20 @@ export default function Navbar({ dark }) {
 
             {/* LINKS */}
             <div className="hidden md:flex gap-8 text-sm font-medium">
-              {["Home", "About", "Projects", "Contact"].map(
-                (item, index) => (
-                  <motion.div
-                    key={index}
-                    whileHover={{ y: -3 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={navItemStyle}
-                  >
-                    <Link
-                      to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                    >
-                      {item}
-                    </Link>
+              {["Home", "About", "Projects", "Contact"].map((item, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ y: -3 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={navItemStyle}
+                >
+                  <Link to={item === "Home" ? "/" : `/${item.toLowerCase()}`}>
+                    {item}
+                  </Link>
 
-                    <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-lime-400 transition-all duration-300 group-hover:w-full"></span>
-                  </motion.div>
-                )
-              )}
+                  <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-lime-400 transition-all duration-300 group-hover:w-full"></span>
+                </motion.div>
+              ))}
             </div>
 
             {/* RIGHT */}
@@ -120,16 +114,15 @@ export default function Navbar({ dark }) {
         <AnimatePresence>
           {scrolled && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
               className="flex items-center gap-3"
             >
               <Link
                 to="/"
-                onClick={() =>
-                  window.scrollTo({ top: 0, behavior: "smooth" })
-                }
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                 className="flex items-center gap-3"
               >
                 <img
@@ -142,15 +135,26 @@ export default function Navbar({ dark }) {
                 />
               </Link>
 
-              <span className="text-sm font-medium whitespace-nowrap">
+              <span className="text-sm font-medium whitespace-nowrap text-gray-700 dark:text-gray-300">
                 Available for work
               </span>
 
-              <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ repeat: Infinity, duration: 2 }}
-                className="w-2.5 h-2.5 bg-green-500 rounded-full"
-              />
+              {/* Premium Glow Status Indicator */}
+              <div className="relative flex items-center justify-center">
+                {/* Glow Pulse */}
+                <motion.div
+                  animate={{ scale: [1, 1.8, 1], opacity: [0.6, 0, 0.6] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="absolute w-4 h-4 bg-green-400 rounded-full blur-md"
+                />
+
+                {/* Main Dot */}
+                <motion.div
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="w-2.5 h-2.5 bg-green-500 rounded-full shadow-[0_0_8px_#22c55e,0_0_18px_#22c55e]"
+                />
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
@@ -168,27 +172,23 @@ export default function Navbar({ dark }) {
             }`}
           >
             <div className="flex flex-col gap-6 text-center text-lg">
-              {["Home", "About", "Projects", "Contact"].map(
-                (item, index) => (
-                  <motion.div key={index} whileTap={{ scale: 0.95 }}>
-                    <Link
-                      to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                      onClick={() => setOpen(false)}
-                      className="hover:text-lime-400 transition"
-                    >
-                      {item}
-                    </Link>
-                  </motion.div>
-                )
-              )}
+              {["Home", "About", "Projects", "Contact"].map((item, index) => (
+                <motion.div key={index} whileTap={{ scale: 0.95 }}>
+                  <Link
+                    to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                    onClick={() => setOpen(false)}
+                    className="hover:text-lime-400 transition"
+                  >
+                    {item}
+                  </Link>
+                </motion.div>
+              ))}
 
               <a
                 href="/resume.pdf"
                 download
                 className={`mt-4 px-6 py-2 rounded-full font-medium ${
-                  dark
-                    ? "bg-lime-400 text-black"
-                    : "bg-black text-white"
+                  dark ? "bg-lime-400 text-black" : "bg-black text-white"
                 }`}
               >
                 Download CV
