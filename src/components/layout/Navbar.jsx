@@ -135,7 +135,7 @@ export default function Navbar({ dark }) {
                 />
               </Link>
 
-              <span className="text-sm font-medium whitespace-nowrap text-gray-700 dark:text-gray-300">
+              <span className="text-sm ml-5 mr-5 font-medium whitespace-nowrap text-gray-700 dark:text-gray-300">
                 Available for work
               </span>
 
