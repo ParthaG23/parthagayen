@@ -16,7 +16,7 @@ const [isDesktop, setIsDesktop] = useState(() => window.innerWidth >= 768);
 useEffect(() => {
 const timer = setTimeout(() => {
 setShowSplash(false);
-}, 3000);
+}, 2500);
 
 
 return () => clearTimeout(timer);

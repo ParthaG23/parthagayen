@@ -18,7 +18,6 @@ registerType: "autoUpdate",
   manifest: {
     name: "Partha Gayen Portfolio",
     short_name: "Partha",
-
     description: "Full Stack Developer Portfolio",
 
     start_url: "/",
@@ -49,7 +48,20 @@ registerType: "autoUpdate",
   workbox: {
     cleanupOutdatedCaches: true,
     clientsClaim: true,
-    skipWaiting: true
+    skipWaiting: true,
+
+    runtimeCaching: [
+      {
+        urlPattern: ({ request }) => request.destination === "image",
+        handler: "CacheFirst",
+        options: {
+          cacheName: "images",
+          expiration: {
+            maxEntries: 50
+          }
+        }
+      }
+    ]
   },
 
   devOptions: {
