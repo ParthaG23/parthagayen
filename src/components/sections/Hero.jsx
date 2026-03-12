@@ -24,7 +24,6 @@ const Hero = memo(function Hero({ dark }) {
     >
       <div className="max-w-6xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-3 items-center gap-12">
-          
           {/* LEFT CONTENT */}
           <div className="text-center lg:text-left">
             <p className="tracking-widest mb-4 text-sm opacity-70">
@@ -38,12 +37,12 @@ const Hero = memo(function Hero({ dark }) {
 
           {/* CENTER IMAGE */}
           <div className="relative flex justify-center my-10 lg:my-0">
-            
             <motion.img
               src={heroImg}
               alt="Partha Gayen"
               loading="eager"
               fetchPriority="high"
+              decoding="async"
               width="340"
               height="450"
               animate={{ y: [0, -8, 0] }}
@@ -110,11 +109,10 @@ const Hero = memo(function Hero({ dark }) {
             </h1>
 
             <p className="mt-6 text-base opacity-70 leading-relaxed">
-              Full-Stack Web Developer & Data Analytics Enthusiast.
-              Building modern web experiences and scalable solutions.
+              Full-Stack Web Developer & Data Analytics Enthusiast. Building
+              modern web experiences and scalable solutions.
             </p>
           </div>
-
         </div>
       </div>
     </section>

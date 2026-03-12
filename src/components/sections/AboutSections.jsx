@@ -184,7 +184,7 @@ export default function AboutSection({ dark }) {
          <motion.img
               src={aboutImg}
               alt="Partha Gayen"
-              loading="eager"
+               loading="lazy"
               fetchPriority="high"
               width="340"
               height="450"

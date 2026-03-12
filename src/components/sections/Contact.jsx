@@ -103,6 +103,7 @@ const Contact = memo(function Contact({ dark }) {
             height="520"
             className="rounded-3xl shadow-lg w-full max-w-lg object-cover"
           />
+          
         </motion.div>
 
         {/* FORM SIDE */}
