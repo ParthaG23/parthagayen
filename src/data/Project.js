@@ -9,7 +9,7 @@ const projects = [
 
 {
   id: 5,
-  title: "Full Stack Calculator Platform",
+  title: "CalcVision- All-in-One Calculator Platform",
   description:
     "A scalable MERN-based calculator platform with Firebase authentication, offering multiple dynamic tools like BMI, unit conversion, and advanced calculations. Features secure user login, persistent calculation history, and a responsive, performance-optimized UI for seamless experience across devices.",
   tech: [
