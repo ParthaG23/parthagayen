@@ -3,8 +3,29 @@ import cineverseImg from "../assets/projects/cineverse.webp";
 import tapasvImg from "../assets/projects/tapasvi.webp";
 import movienestImg from "../assets/projects/movienest.webp"
 import snakeGameImg from "../assets/projects/snakeGameImg.webp"
+import calculatorImg from "../assets/projects/calcVison.webp"
 
 const projects = [
+
+{
+  id: 5,
+  title: "Full Stack Calculator Platform",
+  description:
+    "A scalable MERN-based calculator platform with Firebase authentication, offering multiple dynamic tools like BMI, unit conversion, and advanced calculations. Features secure user login, persistent calculation history, and a responsive, performance-optimized UI for seamless experience across devices.",
+  tech: [
+    "MongoDB",
+    "Express.js",
+    "React.js",
+    "Node.js",
+    "Firebase Authentication",
+    "Tailwind CSS",
+    "Framer Motion"
+  ],
+  github: "https://github.com/ParthaG23/SmartCal", // replace with your repo
+  live: "https://smart-cal-tan.vercel.app", // replace with your live link
+  image: calculatorImg,
+  date: "Mar 2026",
+},
   {
   id: 4,
   title: "Neon Snake Game",
