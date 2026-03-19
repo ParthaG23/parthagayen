@@ -5,13 +5,17 @@ import projects from "../../data/Project";
 
 export default function ProjectsPreview({ dark }) {
   const recentProjects = projects.slice(0, 3);
+  const textPrimary = dark ? "text-white" : "text-gray-900";
 
   return (
     <section
       id="projects"
-      className={`py-24 lg:py-32 ${
-        dark ? "bg-[#0f0f0f] text-white" : "bg-[#f5f5f5] text-gray-900"
-      }`}
+      className={`py-24 lg:py-32 transition-colors duration-500 ${textPrimary}`}
+      style={{
+        background: dark ? "rgba(0,0,0,0.25)" : "rgba(255,255,255,0.25)",
+        backdropFilter: "blur(2px)",
+        WebkitBackdropFilter: "blur(2px)",
+      }}
     >
       <div className="max-w-7xl mx-auto px-6">
 
@@ -82,8 +86,8 @@ export default function ProjectsPreview({ dark }) {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-5 py-2 rounded-full 
-                                   border border-white/20 
+                        className="flex items-center gap-2 px-5 py-2 rounded-full
+                                   border border-white/20
                                    hover:border-lime-400 hover:text-lime-400
                                    transition-all duration-300 text-sm font-medium"
                       >
@@ -97,8 +101,8 @@ export default function ProjectsPreview({ dark }) {
                         href={project.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-5 py-2 rounded-full 
-                                   border border-white/20 
+                        className="flex items-center gap-2 px-5 py-2 rounded-full
+                                   border border-white/20
                                    hover:border-lime-400 hover:text-lime-400
                                    transition-all duration-300 text-sm font-medium"
                       >
@@ -148,7 +152,7 @@ export default function ProjectsPreview({ dark }) {
         <div className="text-center mt-20 lg:mt-28">
           <Link
             to="/projects"
-            className="inline-block px-8 lg:px-12 py-3 lg:py-4 rounded-full  
+            className="inline-block px-8 lg:px-12 py-3 lg:py-4 rounded-full
                        border-2 border-lime-400 text-lime-400
                        text-sm lg:text-base font-semibold
                        hover:bg-lime-400 hover:text-black

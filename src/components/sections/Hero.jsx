@@ -6,30 +6,33 @@ import heroImg from "../../assets/images/hero.webp";
 const Hero = memo(function Hero({ dark }) {
   const [showHand, setShowHand] = useState(false);
 
-  // Optimized interval toggle
   useEffect(() => {
     const interval = setInterval(() => {
       setShowHand((prev) => !prev);
     }, 2000);
-
     return () => clearInterval(interval);
   }, []);
+
+  const textPrimary = dark ? "text-white" : "text-gray-900";
 
   return (
     <section
       id="home"
-      className={`min-h-screen flex items-center justify-center px-6 pt-32 pb-24 transition-colors duration-500 ${
-        dark ? "bg-[#0f0f0f] text-white" : "bg-[#f5f5f5] text-gray-900"
-      }`}
+      className={`min-h-screen flex items-center justify-center px-6 pt-32 pb-24 transition-colors duration-500 ${textPrimary}`}
+      style={{
+        background: dark ? "rgba(0,0,0,0.25)" : "rgba(255,255,255,0.25)",
+        backdropFilter: "blur(2px)",
+        WebkitBackdropFilter: "blur(2px)",
+      }}
     >
       <div className="max-w-6xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-3 items-center gap-12">
+
           {/* LEFT CONTENT */}
           <div className="text-center lg:text-left">
             <p className="tracking-widest mb-4 text-sm opacity-70">
               PARTHA GAYEN
             </p>
-
             <h1 className="font-extrabold text-4xl lg:text-[clamp(48px,5vw,80px)] leading-none">
               WEB
             </h1>
@@ -46,11 +49,7 @@ const Hero = memo(function Hero({ dark }) {
               width="340"
               height="450"
               animate={{ y: [0, -8, 0] }}
-              transition={{
-                repeat: Infinity,
-                duration: 5,
-                ease: "easeInOut",
-              }}
+              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
               style={{ willChange: "transform" }}
               className="w-[240px] lg:w-[340px] aspect-[3/4] object-cover rounded-[32px] shadow-lg"
             />
@@ -58,13 +57,13 @@ const Hero = memo(function Hero({ dark }) {
             {/* BADGE */}
             <motion.div
               className="
-                absolute 
-                left-2 sm:left-4 lg:-left-10 
+                absolute
+                left-2 sm:left-4 lg:-left-10
                 bottom-6 sm:bottom-8 lg:bottom-16
-                w-14 h-14 lg:w-16 lg:h-16 
+                w-14 h-14 lg:w-16 lg:h-16
                 rounded-full
-                bg-lime-400 
-                flex items-center justify-center 
+                bg-lime-400
+                flex items-center justify-center
                 shadow-md
               "
             >
@@ -84,10 +83,7 @@ const Hero = memo(function Hero({ dark }) {
                   <motion.div
                     key="hand"
                     initial={{ opacity: 0 }}
-                    animate={{
-                      opacity: 1,
-                      rotate: [0, 15, -15, 15, 0],
-                    }}
+                    animate={{ opacity: 1, rotate: [0, 15, -15, 15, 0] }}
                     exit={{ opacity: 0 }}
                     transition={{
                       opacity: { duration: 0.3 },
@@ -107,12 +103,12 @@ const Hero = memo(function Hero({ dark }) {
             <h1 className="font-extrabold text-4xl lg:text-[clamp(48px,5vw,80px)] leading-none">
               DEVELOPER
             </h1>
-
             <p className="mt-6 text-base opacity-70 leading-relaxed">
-              Full-Stack Web Developer & Data Analytics Enthusiast. Building
+              Full-Stack Web Developer &amp; Data Analytics Enthusiast. Building
               modern web experiences and scalable solutions.
             </p>
           </div>
+
         </div>
       </div>
     </section>

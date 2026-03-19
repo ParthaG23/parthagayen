@@ -6,14 +6,17 @@ import projects from "../data/Project";
 
 export default function Projects({ dark }) {
   return (
-    <div
-      className={`min-h-screen transition-colors duration-500 ${
-        dark ? "bg-[#0b0b0b] text-white" : "bg-[#f2f2f2] text-black"
-      }`}
-    >
+    <div className={`min-h-screen transition-colors duration-500 ${dark ? "text-white" : "text-black"}`}>
       <Navbar dark={dark} />
 
-      <main className="pt-32 lg:pt-40 px-6 pb-24">
+      <main
+        className="pt-32 lg:pt-40 px-6 pb-24"
+        style={{
+          background: dark ? "rgba(0,0,0,0.25)" : "rgba(255,255,255,0.25)",
+          backdropFilter: "blur(2px)",
+          WebkitBackdropFilter: "blur(2px)",
+        }}
+      >
 
         {/* ================= HEADING ================= */}
         <motion.div
@@ -77,7 +80,6 @@ export default function Projects({ dark }) {
                   {/* ================= GITHUB + LIVE DEMO ================= */}
                   <div className="flex justify-center lg:justify-start gap-6">
 
-                    {/* GitHub Button */}
                     {project.github && (
                       <a
                         href={project.github}
@@ -90,7 +92,6 @@ export default function Projects({ dark }) {
                       </a>
                     )}
 
-                    {/* Live Demo Button */}
                     {project.live && (
                       <a
                         href={project.live}
@@ -104,7 +105,6 @@ export default function Projects({ dark }) {
                     )}
 
                   </div>
-
                 </motion.div>
 
                 {/* ================= IMAGE ================= */}
@@ -139,7 +139,6 @@ export default function Projects({ dark }) {
           })}
 
         </div>
-
       </main>
 
       <Footer dark={dark} />

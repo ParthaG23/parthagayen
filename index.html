@@ -1,52 +1,40 @@
 <!doctype html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
 
+    <!-- Mobile Fullscreen + Notch Support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-<!-- Mobile Fullscreen + Notch Support -->
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <!-- FAVICONS -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
 
+    <!-- iOS PWA SUPPORT -->
+    <!-- ✅ Replaces deprecated apple-mobile-web-app-capable -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Partha Gayen" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
+    <!-- PWA MANIFEST: vite-plugin-pwa injects this automatically -->
 
-<!-- iOS PWA Fullscreen Support -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Partha Gayen">
+    <!-- SEO -->
+    <title>Partha Gayen | Full Stack Developer</title>
+    <meta name="description" content="Partha Gayen - Full Stack Developer Portfolio. Building modern and scalable web applications using MERN stack." />
+    <meta name="keywords" content="Partha Gayen, Full Stack Developer, MERN Developer, React Developer, Portfolio" />
+    <meta name="author" content="Partha Gayen" />
 
-<!-- SEO -->
-<title>Partha Gayen | Full Stack Developer</title>
-
-<meta 
-  name="description" 
-  content="Partha Gayen - Full Stack Developer Portfolio. Building modern and scalable web applications using MERN stack." 
-/>
-
-<meta 
-  name="keywords" 
-  content="Partha Gayen, Full Stack Developer, MERN Developer, React Developer, Portfolio" 
-/>
-
-<meta name="author" content="Partha Gayen" />
-
-<!-- Favicon -->
-<link rel="icon" type="image/png" href="/icon-192.png" />
-
-<!-- Apple Touch Icon -->
-<link rel="apple-touch-icon" href="/icon-192.png" />
-
-
-
+    <!-- Open Graph -->
+    <meta property="og:title" content="Partha Gayen | Full Stack Developer" />
+    <meta property="og:description" content="Building modern and scalable web applications using MERN stack." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/icon-512.png" />
 
   </head>
-
   <body>
     <div id="root"></div>
-
-
-<!-- React Entry -->
-<script type="module" src="/src/main.jsx"></script>
-
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

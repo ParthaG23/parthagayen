@@ -2,12 +2,17 @@ import { motion } from "framer-motion";
 import services from "../../data/services";
 
 export default function Services({ dark }) {
+  const textPrimary = dark ? "text-white" : "text-gray-900";
+
   return (
     <section
       id="services"
-      className={`py-20 lg:py-28 transition-colors duration-500 ${
-        dark ? "bg-[#0f0f0f] text-white" : "bg-[#f5f5f5] text-gray-900"
-      }`}
+      className={`py-20 lg:py-28 transition-colors duration-500 ${textPrimary}`}
+      style={{
+        background: dark ? "rgba(0,0,0,0.25)" : "rgba(255,255,255,0.25)",
+        backdropFilter: "blur(2px)",
+        WebkitBackdropFilter: "blur(2px)",
+      }}
     >
       <div className="max-w-7xl mx-auto px-6 text-center">
 
@@ -48,11 +53,23 @@ export default function Services({ dark }) {
                 transition={{ delay: index * 0.1, duration: 0.5 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -6 }}
-                className={`group p-6 lg:p-8 rounded-3xl border transition-all duration-300 ${
-                  dark
-                    ? "bg-[#151515] border-white/10 hover:border-lime-400/40"
-                    : "bg-white border-black/10 hover:border-lime-500/40"
-                }`}
+                className="group p-6 lg:p-8 rounded-3xl border transition-all duration-300"
+                style={{
+                  background: dark ? "rgba(255,255,255,0.05)" : "rgba(255,255,255,0.4)",
+                  borderColor: dark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)",
+                  backdropFilter: "blur(12px)",
+                  WebkitBackdropFilter: "blur(12px)",
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.borderColor = dark
+                    ? "rgba(163,230,53,0.4)"
+                    : "rgba(101,163,13,0.4)";
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.borderColor = dark
+                    ? "rgba(255,255,255,0.1)"
+                    : "rgba(0,0,0,0.1)";
+                }}
               >
                 {/* Icon */}
                 <div className="mb-4 text-lime-400 flex justify-center">

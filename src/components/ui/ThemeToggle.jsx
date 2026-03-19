@@ -8,15 +8,13 @@ export default function ThemeToggle({ dark, setDark }) {
       className="fixed bottom-10 left-1/2 -translate-x-1/2 z-50 cursor-pointer"
     >
       <div
-        className={`
-          w-16 h-8 rounded-full flex items-center px-1
-          shadow-lg border transition-all duration-300
-          ${
-            dark
-              ? "bg-[#1e1e1e] border-white/20"
-              : "bg-white border-black/20"
-          }
-        `}
+        className="w-16 h-8 rounded-full flex items-center px-1 shadow-lg border transition-all duration-300"
+        style={{
+          background: dark ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.3)",
+          borderColor: dark ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.15)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
+        }}
       >
         <motion.div
           layout

@@ -4,8 +4,30 @@ import tapasvImg from "../assets/projects/tapasvi.webp";
 import movienestImg from "../assets/projects/movienest.webp"
 import snakeGameImg from "../assets/projects/snakeGameImg.webp"
 import calculatorImg from "../assets/projects/calcVison.webp"
+import ourShopImg from "../assets/projects/ourShop.webp"
+
 
 const projects = [
+
+  {
+  id: 6,
+  title: "Ma Kali Vandar– Smart Grocery Shop Management System",
+  description:
+    "A full-stack MERN-based grocery shop management system designed to simplify daily operations for shop owners. It enables efficient tracking of products, customer baki (credit), and sales history. With secure authentication, real-time updates, and a responsive UI, the platform ensures smooth shop management across all devices.",
+  tech: [
+    "MongoDB",
+    "Express.js",
+    "React.js",
+    "Node.js",
+    "Firebase Authentication",
+    "Tailwind CSS",
+    "Framer Motion"
+  ],
+  github: "https://github.com/ParthaG23/Ma_Kali_Vander_Our_shop", 
+  live: "https://ma-kali-vander-our-shop-5qlp.vercel.app", 
+  image: ourShopImg,
+  date: "Mar 2026",
+},
 
 {
   id: 5,
@@ -28,12 +50,12 @@ const projects = [
 },
   {
   id: 4,
-  title: "Neon Snake Game",
+  title: "Snake Game",
   description:
     "A modern, mobile-optimized Snake game featuring smooth controls, neon UI effects, and performance-tuned gameplay built with React and Canvas.",
   tech: ["React.js", "Tailwind CSS", "JavaScript", "Canvas API"],
   github: "https://github.com/ParthaG23/sankeGame",
-  live: "https://sanke-game-kohl.vercel.app/",
+  live: "https://sanke-game-olive.vercel.app/",
   image: snakeGameImg,
   date: "Feb 14, 2026",
 },

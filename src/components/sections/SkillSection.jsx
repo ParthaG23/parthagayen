@@ -14,12 +14,36 @@ const Skills = memo(function Skills({ dark }) {
     viewport: { once: true, amount: 0.2 },
   };
 
+  const cardStyle = {
+    background: dark ? "rgba(255,255,255,0.05)" : "rgba(255,255,255,0.4)",
+    borderColor: dark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)",
+    backdropFilter: "blur(12px)",
+    WebkitBackdropFilter: "blur(12px)",
+  };
+
+  const hoverEnter = (e) => {
+    e.currentTarget.style.borderColor = dark
+      ? "rgba(163,230,53,0.4)"
+      : "rgba(101,163,13,0.4)";
+  };
+
+  const hoverLeave = (e) => {
+    e.currentTarget.style.borderColor = dark
+      ? "rgba(255,255,255,0.1)"
+      : "rgba(0,0,0,0.1)";
+  };
+
   return (
     <section
       id="skills"
-      className={`py-20 lg:py-28 ${
-        dark ? "bg-[#0f0f0f] text-white" : "bg-[#f5f5f5] text-gray-900"
+      className={`py-20 lg:py-28 transition-colors duration-500 ${
+        dark ? "text-white" : "text-gray-900"
       }`}
+      style={{
+        background: dark ? "rgba(0,0,0,0.25)" : "rgba(255,255,255,0.25)",
+        backdropFilter: "blur(2px)",
+        WebkitBackdropFilter: "blur(2px)",
+      }}
     >
       <div className="max-w-7xl mx-auto px-6">
 
@@ -46,11 +70,10 @@ const Skills = memo(function Skills({ dark }) {
                 transition={{ delay: index * 0.07, duration: 0.5 }}
                 viewport={{ once: true, amount: 0.2 }}
                 whileHover={{ y: -4 }}
-                className={`p-5 lg:p-6 rounded-2xl border transition-all duration-300 ${
-                  dark
-                    ? "bg-[#151515] border-white/10 hover:border-lime-400/40"
-                    : "bg-white border-black/10 hover:border-lime-500/40"
-                }`}
+                className="p-5 lg:p-6 rounded-2xl border transition-all duration-300"
+                style={cardStyle}
+                onMouseEnter={hoverEnter}
+                onMouseLeave={hoverLeave}
               >
                 {/* ICON */}
                 <div className="text-2xl text-lime-400 mb-3">
@@ -101,11 +124,8 @@ const Skills = memo(function Skills({ dark }) {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
               viewport={{ once: true, amount: 0.2 }}
-              className={`p-5 lg:p-6 rounded-2xl border ${
-                dark
-                  ? "bg-[#151515] border-white/10"
-                  : "bg-white border-black/10"
-              }`}
+              className="p-5 lg:p-6 rounded-2xl border"
+              style={cardStyle}
             >
               <h4 className="text-base lg:text-lg font-bold text-lime-400 mb-3">
                 {category.title}

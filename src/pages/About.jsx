@@ -11,18 +11,20 @@ import { motion } from "framer-motion";
 
 export default function AboutPage({ dark }) {
   return (
-    <div
-      className={`min-h-screen transition-colors duration-500 ${
-        dark ? "bg-[#0b0b0b] text-white" : "bg-[#f2f2f2] text-black"
-      }`}
-    >
+    <div className={`min-h-screen transition-colors duration-500 ${dark ? "text-white" : "text-black"}`}>
       <Navbar dark={dark} />
 
       <main className="pt-20 lg:pt-28">
 
         {/* MOBILE PROFILE */}
-        <div className="lg:hidden flex flex-col items-center text-center py-12">
-
+        <div
+          className="lg:hidden flex flex-col items-center text-center py-12"
+          style={{
+            background: dark ? "rgba(0,0,0,0.25)" : "rgba(255,255,255,0.25)",
+            backdropFilter: "blur(2px)",
+            WebkitBackdropFilter: "blur(2px)",
+          }}
+        >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -48,7 +50,6 @@ export default function AboutPage({ dark }) {
             MERN Stack Developer & B.Tech CSE Student passionate about
             building scalable web applications.
           </p>
-
         </div>
 
         {/* Sections */}

@@ -3,274 +3,226 @@
 @tailwind utilities;
 
 /* ===============================
-GLOBAL SETTINGS
+   GLOBAL SETTINGS
 ================================= */
 
 html {
-scroll-behavior: smooth;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
-/* FULL SCREEN + NOTCH FIX */
-html, body, #root {
-width: 100%;
-height: 100%;
-min-height: 100dvh; /* dynamic viewport height for mobile */
-margin: 0;
-padding: 0;
-overflow-x: hidden;
-font-family: 'Inter', sans-serif;
-background: #000000;
-}
-
-/* SAFE AREA SUPPORT (Notch devices) */
 body {
-padding-top: env(safe-area-inset-top);
-padding-bottom: env(safe-area-inset-bottom);
+  width: 100%;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+
+  /* ✅ REMOVED background: #000000 — AnimatedBackground handles this now */
+  background: transparent;
+
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+
+  /* ✅ Ultra smooth text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  width: 100%;
+  min-height: 100dvh;
 }
 
 /* ===============================
-CUSTOM CURSOR (GLOBAL HIDE)
+   SMOOTH SCROLL — Lenis (desktop only)
 ================================= */
 
+@media (min-width: 768px) {
+  html.lenis {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important; /* Lenis overrides native scroll */
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+}
+
 /* ===============================
-CUSTOM CURSOR (DESKTOP ONLY)
+   SCROLL REVEAL — reduce pop-in
+================================= */
+
+[data-motion-initial] {
+  will-change: transform, opacity;
+}
+
+/* ===============================
+   CUSTOM CURSOR (DESKTOP ONLY)
 ================================= */
 
 @media (hover: hover) and (pointer: fine) {
-
-html, body, a, button, input, textarea, div, span {
-cursor: none !important;
+  html, body, a, button, input, textarea, div, span {
+    cursor: none !important;
+  }
 }
-
-}
-
-/* ===============================
-CUSTOM CURSOR STYLES
-================================= */
 
 .custom-cursor {
-position: fixed;
-width: 12px;
-height: 12px;
-border-radius: 50%;
-pointer-events: none;
-z-index: 9999;
-transform: translate(-50%, -50%);
-transition: transform 0.15s ease;
-will-change: transform;
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease;
+  will-change: transform;
 }
 
-/* Dark mode cursor */
 .custom-cursor.dark {
-background: radial-gradient(circle, #a3e635, #65a30d);
-box-shadow: 0 0 20px rgba(163, 230, 53, 0.7);
+  background: radial-gradient(circle, #a3e635, #65a30d);
+  box-shadow: 0 0 20px rgba(163, 230, 53, 0.7);
 }
 
-/* Light mode cursor */
 .custom-cursor.light {
-background: radial-gradient(circle, #6366f1, #1f2937);
-box-shadow: 0 0 15px rgba(99, 102, 241, 0.6);
+  background: radial-gradient(circle, #6366f1, #1f2937);
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.6);
 }
 
-/* Hover scale effect */
 .cursor-hover {
-transform: translate(-50%, -50%) scale(1.8);
+  transform: translate(-50%, -50%) scale(1.8);
 }
-
 
 /* ===============================
-DARK MODE (Premium Gradient)
+   DARK MODE
+   ✅ Only text/color rules — NO background (AnimatedBackground handles it)
 ================================= */
 
 body.dark-mode {
-background: linear-gradient(
-135deg,
-#000000 0%,
-#0b0f14 50%,
-#111827 100%
-);
-color: #ffffff;
-transition: background 0.4s ease, color 0.4s ease;
+  color: #ffffff;
+  transition: color 0.4s ease;
 }
 
-/* Subtle tech grid */
+/* Subtle tech grid overlay */
 body.dark-mode::before {
-content: "";
-position: fixed;
-inset: 0;
-background-image: radial-gradient(
-rgba(163, 230, 53, 0.03) 1px,
-transparent 1px
-);
-background-size: 50px 50px;
-pointer-events: none;
-z-index: -1;
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(
+    rgba(163, 230, 53, 0.025) 1px,
+    transparent 1px
+  );
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* ===============================
-LIGHT MODE
+   LIGHT MODE
 ================================= */
 
 body.light-mode {
-background: linear-gradient(
-135deg,
-#f8fafc 0%,
-#f1f5f9 100%
-);
-color: #111827;
-transition: background 0.4s ease, color 0.4s ease;
+  color: #111827;
+  transition: color 0.4s ease;
 }
 
 /* ===============================
-TEXT SELECTION
+   TEXT SELECTION
 ================================= */
 
 ::selection {
-background: #a3e635;
-color: #000;
+  background: #a3e635;
+  color: #000;
 }
 
 /* ===============================
-GLOW UTILITIES
+   GLOW UTILITIES
 ================================= */
 
 .glow-lime {
-box-shadow: 0 0 25px rgba(163, 230, 53, 0.25);
-will-change: box-shadow;
+  box-shadow: 0 0 25px rgba(163, 230, 53, 0.25);
+  will-change: box-shadow;
 }
 
 /* ===============================
-LUXURY GLOW ANIMATIONS
+   ANIMATIONS
 ================================= */
 
 @keyframes luxuryGlowDark {
-0%, 100% {
-box-shadow: 0 0 15px rgba(163, 230, 53, 0.3);
-}
-50% {
-box-shadow: 0 0 30px rgba(163, 230, 53, 0.5);
-}
+  0%, 100% { box-shadow: 0 0 15px rgba(163, 230, 53, 0.3); }
+  50%       { box-shadow: 0 0 30px rgba(163, 230, 53, 0.5); }
 }
 
 @keyframes luxuryGlowLight {
-0%, 100% {
-box-shadow: 0 0 12px rgba(99, 102, 241, 0.15);
+  0%, 100% { box-shadow: 0 0 12px rgba(99, 102, 241, 0.15); }
+  50%       { box-shadow: 0 0 25px rgba(99, 102, 241, 0.25); }
 }
-50% {
-box-shadow: 0 0 25px rgba(99, 102, 241, 0.25);
-}
-}
-
-/* ===============================
-BUTTON GLOW
-================================= */
 
 @keyframes luxuryBtnGlowDark {
-0%, 100% {
-box-shadow: 0 0 10px rgba(163,230,53,0.2);
-}
-50% {
-box-shadow: 0 0 20px rgba(163,230,53,0.4);
-}
+  0%, 100% { box-shadow: 0 0 10px rgba(163, 230, 53, 0.2); }
+  50%       { box-shadow: 0 0 20px rgba(163, 230, 53, 0.4); }
 }
 
 @keyframes luxuryBtnGlowLight {
-0%, 100% {
-box-shadow: 0 0 8px rgba(99,102,241,0.1);
-}
-50% {
-box-shadow: 0 0 18px rgba(99,102,241,0.2);
-}
+  0%, 100% { box-shadow: 0 0 8px rgba(99, 102, 241, 0.1); }
+  50%       { box-shadow: 0 0 18px rgba(99, 102, 241, 0.2); }
 }
 
 /* ===============================
-CUSTOM CURSOR STYLES
-================================= */
-
-.custom-cursor {
-position: fixed;
-width: 12px;
-height: 12px;
-border-radius: 50%;
-pointer-events: none;
-z-index: 9999;
-transform: translate(-50%, -50%);
-transition: transform 0.15s ease;
-will-change: transform;
-}
-
-/* Dark mode cursor */
-.custom-cursor.dark {
-background: radial-gradient(circle, #a3e635, #65a30d);
-box-shadow: 0 0 20px rgba(163, 230, 53, 0.7);
-}
-
-/* Light mode cursor */
-.custom-cursor.light {
-background: radial-gradient(circle, #6366f1, #1f2937);
-box-shadow: 0 0 15px rgba(99, 102, 241, 0.6);
-}
-
-/* Hover scale effect */
-.cursor-hover {
-transform: translate(-50%, -50%) scale(1.8);
-}
-
-/* ===============================
-PARTICLE SUPPORT
+   PARTICLE SUPPORT
 ================================= */
 
 .cursor-particle-dark,
 .cursor-particle-light {
-position: fixed;
-width: 8px;
-height: 8px;
-border-radius: 50%;
-pointer-events: none;
-z-index: 9999;
-will-change: transform, opacity;
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform, opacity;
 }
 
 .cursor-particle-dark {
-background: radial-gradient(circle, #a3e635, #65a30d);
-box-shadow: 0 0 15px rgba(163,230,53,0.6);
+  background: radial-gradient(circle, #a3e635, #65a30d);
+  box-shadow: 0 0 15px rgba(163, 230, 53, 0.6);
 }
 
 .cursor-particle-light {
-background: radial-gradient(circle, #6366f1, #1f2937);
-box-shadow: 0 0 12px rgba(99,102,241,0.5);
+  background: radial-gradient(circle, #6366f1, #1f2937);
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.5);
 }
 
 /* ===============================
-TEXT SHINE EFFECT
+   TEXT SHINE
 ================================= */
 
 @keyframes textShine {
-0% { background-position: -200% center; }
-100% { background-position: 200% center; }
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
 }
 
 .shine-text {
-background: linear-gradient(
-120deg,
-#84cc16 30%,
-#ffffff 50%,
-#84cc16 70%
-);
-background-size: 200% auto;
-background-clip: text;
--webkit-background-clip: text;
-color: transparent;
-animation: textShine 2.2s linear infinite;
+  background: linear-gradient(120deg, #84cc16 30%, #ffffff 50%, #84cc16 70%);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: textShine 2.2s linear infinite;
 }
 
 /* ===============================
-EXTRA PREMIUM GLOW
+   PREMIUM GLOW
 ================================= */
 
 .premium-glow {
-text-shadow:
-0 0 10px rgba(163,230,53,0.6),
-0 0 25px rgba(163,230,53,0.5),
-0 0 40px rgba(163,230,53,0.3);
+  text-shadow:
+    0 0 10px rgba(163, 230, 53, 0.6),
+    0 0 25px rgba(163, 230, 53, 0.5),
+    0 0 40px rgba(163, 230, 53, 0.3);
 }

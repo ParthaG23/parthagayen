@@ -2,12 +2,17 @@ import { motion } from "framer-motion";
 import educationData from "../../data/education";
 
 export default function Education({ dark }) {
+  const textPrimary = dark ? "text-white" : "text-gray-900";
+
   return (
     <section
       id="education"
-      className={`py-20 lg:py-28 px-6 transition-colors duration-500 ${
-        dark ? "bg-[#0f0f0f] text-white" : "bg-[#f5f5f5] text-gray-900"
-      }`}
+      className={`py-20 lg:py-28 px-6 transition-colors duration-500 ${textPrimary}`}
+      style={{
+        background: dark ? "rgba(0,0,0,0.25)" : "rgba(255,255,255,0.25)",
+        backdropFilter: "blur(2px)",
+        WebkitBackdropFilter: "blur(2px)",
+      }}
     >
       <div className="max-w-6xl mx-auto">
 
@@ -51,11 +56,13 @@ export default function Education({ dark }) {
 
                   {/* CARD */}
                   <div
-                    className={`w-full md:w-5/12 p-6 lg:p-8 rounded-3xl shadow-md ${
-                      dark
-                        ? "bg-[#151515] border border-white/10"
-                        : "bg-white border border-gray-200"
-                    }`}
+                    className="w-full md:w-5/12 p-6 lg:p-8 rounded-3xl shadow-md border"
+                    style={{
+                      background: dark ? "rgba(255,255,255,0.05)" : "rgba(255,255,255,0.4)",
+                      borderColor: dark ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.6)",
+                      backdropFilter: "blur(12px)",
+                      WebkitBackdropFilter: "blur(12px)",
+                    }}
                   >
                     <span className="text-xs sm:text-sm text-lime-400 font-semibold">
                       {item.year}
