@@ -8,20 +8,21 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
 
-      // ✅ Must match actual files in your public/ folder
+      // ✅ Match your actual public folder files
       includeAssets: [
         "favicon.ico",
         "favicon.svg",
         "favicon-96x96.png",
         "apple-touch-icon.png",
-        "icon-192.png",
-        "icon-512.png",
+        "web-app-manifest-192x192.png",
+        "web-app-manifest-512x512.png",
       ],
 
       manifest: {
         name: "Partha Gayen | Web Developer",
         short_name: "Partha.dev",
-        description: "Full-Stack Web Developer & Data Analytics Enthusiast",
+        description:
+          "Full-Stack Web Developer & Data Analytics Enthusiast",
 
         start_url: "/",
         scope: "/",
@@ -34,28 +35,28 @@ export default defineConfig({
 
         lang: "en",
 
-        // ✅ Split any + maskable into separate entries (fixes manifest syntax error)
+        // ✅ Fixed icon paths
         icons: [
           {
-            src: "/icon-192.png",
+            src: "/web-app-manifest-192x192.png",
             sizes: "192x192",
             type: "image/png",
             purpose: "any",
           },
           {
-            src: "/icon-192.png",
+            src: "/web-app-manifest-192x192.png",
             sizes: "192x192",
             type: "image/png",
             purpose: "maskable",
           },
           {
-            src: "/icon-512.png",
+            src: "/web-app-manifest-512x512.png",
             sizes: "512x512",
             type: "image/png",
             purpose: "any",
           },
           {
-            src: "/icon-512.png",
+            src: "/web-app-manifest-512x512.png",
             sizes: "512x512",
             type: "image/png",
             purpose: "maskable",
@@ -109,7 +110,8 @@ export default defineConfig({
             },
           },
           {
-            urlPattern: ({ request }) => request.destination === "image",
+            urlPattern: ({ request }) =>
+              request.destination === "image",
             handler: "CacheFirst",
             options: {
               cacheName: "images-cache",
@@ -123,7 +125,7 @@ export default defineConfig({
         ],
       },
 
-      // ✅ type: "module" fixes the pwa-entry-point 404 in dev
+      // ✅ Fix dev mode issues
       devOptions: {
         enabled: true,
         type: "module",
