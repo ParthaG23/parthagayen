@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { FiSend } from "react-icons/fi";
 import heroImg from "../../assets/images/hero.webp";
+import { useGlass } from "../../hooks/useGlass";
 
 import SendingMessage from "../ui/SendingMessage";
 import SuccessMessage from "../ui/SuccessMessage";
@@ -12,6 +13,7 @@ const Contact = memo(function Contact({ dark }) {
   const formRef = useRef(null);
   const [status, setStatus] = useState("idle");
   const [errors, setErrors] = useState({});
+  const glassStyle = useGlass(dark);
 
   const validate = useCallback((data) => {
     const newErrors = {};
@@ -58,13 +60,10 @@ const Contact = memo(function Contact({ dark }) {
 
   const textMuted = dark ? "rgba(255,255,255,0.65)" : "rgba(0,0,0,0.6)";
 
-  // ✅ Input glass style
   const inputStyle = {
     background: dark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)",
     border: dark ? "1px solid rgba(255,255,255,0.1)" : "1px solid rgba(0,0,0,0.12)",
     color: dark ? "#fff" : "#111",
-    backdropFilter: "blur(8px)",
-    WebkitBackdropFilter: "blur(8px)",
     outline: "none",
     width: "100%",
     transition: "border-color 0.2s",
@@ -73,13 +72,9 @@ const Contact = memo(function Contact({ dark }) {
   return (
     <section
       id="contact"
+      aria-label="Contact"
       className={`py-20 lg:py-28 transition-colors duration-500 ${dark ? "text-white" : "text-gray-900"}`}
-      style={{
-        // ✅ Glass — lets animated background show through
-        background: dark ? "rgba(0,0,0,0.25)" : "rgba(255,255,255,0.25)",
-        backdropFilter: "blur(2px)",
-        WebkitBackdropFilter: "blur(2px)",
-      }}
+      style={glassStyle}
     >
       <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
 
@@ -87,13 +82,13 @@ const Contact = memo(function Contact({ dark }) {
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1, margin: "0px 0px -100px 0px" }}
           transition={{ duration: 0.6 }}
           className="hidden lg:block"
         >
           <img
             src={heroImg}
-            alt="Contact"
+            alt="Contact Partha Gayen"
             loading="lazy"
             width="500"
             height="520"
@@ -105,7 +100,7 @@ const Contact = memo(function Contact({ dark }) {
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1, margin: "0px 0px -100px 0px" }}
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 lg:mb-6">
@@ -121,44 +116,56 @@ const Contact = memo(function Contact({ dark }) {
 
             {/* NAME */}
             <div>
+              <label htmlFor="contact-name" className="sr-only">Your Name</label>
               <input
+                id="contact-name"
                 type="text"
                 name="name"
                 placeholder="Your Name"
+                aria-label="Your Name"
+                aria-invalid={!!errors.name}
                 className="p-4 rounded-full"
                 style={inputStyle}
                 onFocus={(e) => (e.target.style.borderColor = "#a3e635")}
                 onBlur={(e) => (e.target.style.borderColor = dark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.12)")}
               />
-              {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
+              {errors.name && <p role="alert" className="text-red-400 text-sm mt-1">{errors.name}</p>}
             </div>
 
             {/* EMAIL */}
             <div>
+              <label htmlFor="contact-email" className="sr-only">Your Email</label>
               <input
+                id="contact-email"
                 type="email"
                 name="email"
                 placeholder="Your Email"
+                aria-label="Your Email"
+                aria-invalid={!!errors.email}
                 className="p-4 rounded-full"
                 style={inputStyle}
                 onFocus={(e) => (e.target.style.borderColor = "#a3e635")}
                 onBlur={(e) => (e.target.style.borderColor = dark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.12)")}
               />
-              {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
+              {errors.email && <p role="alert" className="text-red-400 text-sm mt-1">{errors.email}</p>}
             </div>
 
             {/* MESSAGE */}
             <div>
+              <label htmlFor="contact-message" className="sr-only">Your Message</label>
               <textarea
+                id="contact-message"
                 name="message"
                 rows="5"
                 placeholder="Message"
+                aria-label="Your Message"
+                aria-invalid={!!errors.message}
                 className="p-4 rounded-3xl"
                 style={inputStyle}
                 onFocus={(e) => (e.target.style.borderColor = "#a3e635")}
                 onBlur={(e) => (e.target.style.borderColor = dark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.12)")}
               />
-              {errors.message && <p className="text-red-400 text-sm mt-1">{errors.message}</p>}
+              {errors.message && <p role="alert" className="text-red-400 text-sm mt-1">{errors.message}</p>}
             </div>
 
             {/* SUBMIT */}
@@ -167,11 +174,13 @@ const Contact = memo(function Contact({ dark }) {
               disabled={status === "sending"}
               whileHover={{ scale: 1.03, backgroundColor: "#a3e635", color: "#000" }}
               whileTap={{ scale: 0.97 }}
+              aria-label="Send message"
               className="flex items-center justify-center gap-2 px-10 py-3 rounded-full border-2 border-lime-400 text-lime-400 font-semibold transition-all duration-300 disabled:opacity-60"
             >
               <FiSend />
               SUBMIT
             </motion.button>
+
           </form>
         </motion.div>
       </div>

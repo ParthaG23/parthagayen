@@ -1,22 +1,14 @@
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaInstagram, FaArrowUp } from "react-icons/fa";
+import { useGlass } from "../../hooks/useGlass";
 
 export default function Footer({ dark }) {
+  const glassStyle = useGlass(dark);
+
   return (
     <footer
       className="relative py-16 px-6 transition-colors duration-500"
-      style={{
-        // ✅ Replace solid bg-gray-100 / dark:bg-[#0f0f0f]
-        // with a frosted glass effect so animated background shows through
-        background: dark
-          ? "rgba(0, 0, 0, 0.35)"
-          : "rgba(255, 255, 255, 0.35)",
-        backdropFilter: "blur(20px)",
-        WebkitBackdropFilter: "blur(20px)",
-        borderTop: dark
-          ? "1px solid rgba(255,255,255,0.07)"
-          : "1px solid rgba(0,0,0,0.07)",
-      }}
+      style={glassStyle}
     >
       <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12">
 

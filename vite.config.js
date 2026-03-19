@@ -8,7 +8,6 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
 
-      // ✅ Match your actual public folder files
       includeAssets: [
         "favicon.ico",
         "favicon.svg",
@@ -21,59 +20,23 @@ export default defineConfig({
       manifest: {
         name: "Partha Gayen | Web Developer",
         short_name: "Partha.dev",
-        description:
-          "Full-Stack Web Developer & Data Analytics Enthusiast",
-
+        description: "Full-Stack Web Developer & Data Analytics Enthusiast",
         start_url: "/",
         scope: "/",
-
         display: "standalone",
         orientation: "portrait-primary",
-
         theme_color: "#b5f23d",
         background_color: "#0d0f0b",
-
         lang: "en",
-
-        // ✅ Fixed icon paths
         icons: [
-          {
-            src: "/web-app-manifest-192x192.png",
-            sizes: "192x192",
-            type: "image/png",
-            purpose: "any",
-          },
-          {
-            src: "/web-app-manifest-192x192.png",
-            sizes: "192x192",
-            type: "image/png",
-            purpose: "maskable",
-          },
-          {
-            src: "/web-app-manifest-512x512.png",
-            sizes: "512x512",
-            type: "image/png",
-            purpose: "any",
-          },
-          {
-            src: "/web-app-manifest-512x512.png",
-            sizes: "512x512",
-            type: "image/png",
-            purpose: "maskable",
-          },
+          { src: "/web-app-manifest-192x192.png", sizes: "192x192", type: "image/png", purpose: "any" },
+          { src: "/web-app-manifest-192x192.png", sizes: "192x192", type: "image/png", purpose: "maskable" },
+          { src: "/web-app-manifest-512x512.png", sizes: "512x512", type: "image/png", purpose: "any" },
+          { src: "/web-app-manifest-512x512.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
         ],
-
         shortcuts: [
-          {
-            name: "Projects",
-            url: "/#projects",
-            description: "View my projects",
-          },
-          {
-            name: "Contact",
-            url: "/#contact",
-            description: "Get in touch",
-          },
+          { name: "Projects", url: "/#projects", description: "View my projects" },
+          { name: "Contact",  url: "/#contact",  description: "Get in touch" },
         ],
       },
 
@@ -81,19 +44,14 @@ export default defineConfig({
         cleanupOutdatedCaches: true,
         clientsClaim: true,
         skipWaiting: true,
-
-        globPatterns: ["**/*.{js,css,html,ico,png,svg,woff2}"],
-
+        globPatterns: ["**/*.{js,css,html,ico,png,svg,woff2,webp}"],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
             handler: "CacheFirst",
             options: {
               cacheName: "google-fonts-cache",
-              expiration: {
-                maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365,
-              },
+              expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 },
               cacheableResponse: { statuses: [0, 200] },
             },
           },
@@ -102,34 +60,49 @@ export default defineConfig({
             handler: "CacheFirst",
             options: {
               cacheName: "gstatic-fonts-cache",
-              expiration: {
-                maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365,
-              },
+              expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 },
               cacheableResponse: { statuses: [0, 200] },
             },
           },
           {
-            urlPattern: ({ request }) =>
-              request.destination === "image",
+            urlPattern: ({ request }) => request.destination === "image",
             handler: "CacheFirst",
             options: {
               cacheName: "images-cache",
-              expiration: {
-                maxEntries: 60,
-                maxAgeSeconds: 60 * 60 * 24 * 30,
-              },
+              expiration: { maxEntries: 60, maxAgeSeconds: 60 * 60 * 24 * 30 },
               cacheableResponse: { statuses: [0, 200] },
             },
           },
         ],
       },
 
-      // ✅ Fix dev mode issues
       devOptions: {
         enabled: true,
         type: "module",
       },
     }),
   ],
+
+  build: {
+    // Split vendor chunks — browser caches them separately between deploys
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "react-vendor": ["react", "react-dom"],
+          "motion":        ["framer-motion"],
+          "router":        ["react-router-dom"],
+          "icons":         ["react-icons"],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 600,
+    // Strip console.log & debugger in production
+    minify: "terser",
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
+  },
 });

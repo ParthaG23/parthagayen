@@ -1,15 +1,16 @@
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
-
 import AboutSection from "../components/sections/AboutSections";
 import Skills from "../components/sections/SkillSection";
 import Services from "../components/sections/ServicesSections";
 import Education from "../components/sections/Education";
-
 import profileImg from "../assets/images/profile.webp";
 import { motion } from "framer-motion";
+import { useGlass } from "../hooks/useGlass";
 
 export default function AboutPage({ dark }) {
+  const glassStyle = useGlass(dark);
+
   return (
     <div className={`min-h-screen transition-colors duration-500 ${dark ? "text-white" : "text-black"}`}>
       <Navbar dark={dark} />
@@ -19,11 +20,7 @@ export default function AboutPage({ dark }) {
         {/* MOBILE PROFILE */}
         <div
           className="lg:hidden flex flex-col items-center text-center py-12"
-          style={{
-            background: dark ? "rgba(0,0,0,0.25)" : "rgba(255,255,255,0.25)",
-            backdropFilter: "blur(2px)",
-            WebkitBackdropFilter: "blur(2px)",
-          }}
+          style={glassStyle}
         >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -41,18 +38,12 @@ export default function AboutPage({ dark }) {
               className="w-36 h-36 rounded-full object-cover shadow-md border-4 border-lime-400"
             />
           </motion.div>
-
-          <h2 className="text-xl font-bold mt-4">
-            Partha Gayen
-          </h2>
-
+          <h2 className="text-xl font-bold mt-4">Partha Gayen</h2>
           <p className="text-sm opacity-70 mt-2 px-6 leading-relaxed max-w-xs">
-            MERN Stack Developer & B.Tech CSE Student passionate about
-            building scalable web applications.
+            MERN Stack Developer & B.Tech CSE Student passionate about building scalable web applications.
           </p>
         </div>
 
-        {/* Sections */}
         <div className="space-y-16 lg:space-y-24">
           <AboutSection dark={dark} />
           <Education dark={dark} />

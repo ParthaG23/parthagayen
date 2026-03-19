@@ -1,34 +1,48 @@
 // src/components/ui/SplashScreen.jsx
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 export default function SplashScreen({ onFinish }) {
   const [progress, setProgress] = useState(0);
   const [exiting, setExiting] = useState(false);
+  const isMounted = useRef(true); // ✅ guard against setState after unmount
 
   useEffect(() => {
-    // Progress bar animation
+    isMounted.current = true;
+
+    // Progress bar
     const duration = 2600;
     const start = performance.now();
+    let rafId;
+
     const tick = (now) => {
+      if (!isMounted.current) return;
       const pct = Math.min(((now - start) / duration) * 100, 100);
       setProgress(pct);
-      if (pct < 100) requestAnimationFrame(tick);
+      if (pct < 100) rafId = requestAnimationFrame(tick);
     };
-    requestAnimationFrame(tick);
+    rafId = requestAnimationFrame(tick);
 
-    // Step 1: start exit animation at 2.8s
+    // Start exit
     const exitTimer = setTimeout(() => {
+      if (!isMounted.current) return;
       setExiting(true);
 
-      // Step 2: after exit animation (700ms), call onFinish to unmount
-      setTimeout(() => {
+      // Call onFinish after exit animation completes
+      const finishTimer = setTimeout(() => {
+        if (!isMounted.current) return;
         onFinish?.();
       }, 750);
+
+      return () => clearTimeout(finishTimer);
     }, 2800);
 
-    return () => clearTimeout(exitTimer);
-  }, [onFinish]);
+    return () => {
+      isMounted.current = false;
+      cancelAnimationFrame(rafId);
+      clearTimeout(exitTimer);
+    };
+  }, []); // ✅ empty deps — never re-runs, onFinish read via closure is fine
 
   return (
     <motion.div
@@ -38,7 +52,7 @@ export default function SplashScreen({ onFinish }) {
       animate={
         exiting
           ? { opacity: 0, scale: 1.08, filter: "blur(16px)" }
-          : { opacity: 1, scale: 1, filter: "blur(0px)" }
+          : { opacity: 1, scale: 1,    filter: "blur(0px)"  }
       }
       transition={
         exiting
@@ -259,11 +273,12 @@ export default function SplashScreen({ onFinish }) {
             style={{ width: "min(220px, 60vw)", height: 2, background: "rgba(255,255,255,0.05)" }}
           >
             <div
-              className="absolute left-0 top-0 h-full rounded-full transition-all duration-100"
+              className="absolute left-0 top-0 h-full rounded-full"
               style={{
                 width: `${progress}%`,
                 background: "linear-gradient(90deg, #5a9e10, #b5f23d, #d4ff6a)",
                 boxShadow: "0 0 10px rgba(181,242,61,0.7)",
+                transition: "width 100ms linear",
               }}
             />
             <div
@@ -271,6 +286,7 @@ export default function SplashScreen({ onFinish }) {
               style={{
                 background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent)",
                 left: `${Math.max(progress - 8, 0)}%`,
+                transition: "left 100ms linear",
               }}
             />
           </div>
@@ -282,10 +298,10 @@ export default function SplashScreen({ onFinish }) {
 
       {/* Corner brackets */}
       {[
-        { pos: "top-3 left-3 sm:top-5 sm:left-5",     bt: true,  bb: false, bl: true,  br: false },
-        { pos: "top-3 right-3 sm:top-5 sm:right-5",   bt: true,  bb: false, bl: false, br: true  },
+        { pos: "top-3 left-3 sm:top-5 sm:left-5",        bt: true,  bb: false, bl: true,  br: false },
+        { pos: "top-3 right-3 sm:top-5 sm:right-5",      bt: true,  bb: false, bl: false, br: true  },
         { pos: "bottom-3 left-3 sm:bottom-5 sm:left-5",  bt: false, bb: true,  bl: true,  br: false },
-        { pos: "bottom-3 right-3 sm:bottom-5 sm:right-5", bt: false, bb: true,  bl: false, br: true  },
+        { pos: "bottom-3 right-3 sm:bottom-5 sm:right-5",bt: false, bb: true,  bl: false, br: true  },
       ].map(({ pos, bt, bb, bl, br }, i) => (
         <motion.div
           key={i}

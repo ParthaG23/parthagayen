@@ -14,7 +14,7 @@ function App() {
   const [splashDone, setSplashDone] = useState(false);
   const [isDesktop, setIsDesktop] = useState(() => window.innerWidth >= 768);
 
-  // ✅ Sync dark state → body class so AnimatedBackground & CSS both work
+  // Sync dark state → body class
   useEffect(() => {
     if (dark) {
       document.body.classList.add("dark-mode");
@@ -25,23 +25,30 @@ function App() {
     }
   }, [dark]);
 
+  // Track desktop/mobile
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 768px)");
-    const handleChange = (e) => setIsDesktop(e.matches);
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
+    const mq = window.matchMedia("(min-width: 768px)");
+    const handle = (e) => setIsDesktop(e.matches);
+    mq.addEventListener("change", handle);
+    return () => mq.removeEventListener("change", handle);
   }, []);
 
   return (
     <>
+      {/* ✅ Splash: only mounted until done — fully unmounts after onFinish */}
       {!splashDone && (
         <SplashScreen onFinish={() => setSplashDone(true)} />
       )}
 
+      {/* ✅ Main app: always mounted so AnimatedBackground loads early,
+           but invisible until splash finishes — no opacity fighting */}
       <div
-        className={`${dark ? "dark" : ""} w-full min-h-screen
-          transition-opacity duration-700
-          ${splashDone ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+        className={`${dark ? "dark" : ""} w-full min-h-screen`}
+        style={{
+          opacity: splashDone ? 1 : 0,
+          pointerEvents: splashDone ? "auto" : "none",
+          transition: splashDone ? "opacity 0.6s ease" : "none",
+        }}
       >
         <AnimatedBackground dark={dark} />
 

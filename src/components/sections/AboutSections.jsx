@@ -1,21 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-
-import {
-  FaGithub,
-  FaLinkedin,
-  FaInstagram,
-  FaEnvelope,
-} from "react-icons/fa";
-
+import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from "react-icons/fa";
 import aboutImg from "../../assets/images/about.webp";
 import projects from "../../data/Project";
 import { techStack } from "../../data/skill";
+import { useGlass } from "../../hooks/useGlass";
 
 export default function AboutSection({ dark }) {
   const navigate = useNavigate();
   const sectionRef = useRef(null);
+  const glassStyle = useGlass(dark);
 
   const projectTarget = projects.length;
   const skillTarget = techStack.length;
@@ -52,17 +47,22 @@ export default function AboutSection({ dark }) {
   const textPrimary = dark ? "text-white" : "text-gray-900";
   const textMuted = dark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.6)";
 
+  const vp = { once: true, amount: 0.1, margin: "0px 0px -100px 0px" };
+
+  const socialLinks = [
+    { icon: <FaGithub />,    href: "https://github.com/ParthaG23",                        label: "GitHub profile"    },
+    { icon: <FaLinkedin />,  href: "https://www.linkedin.com/in/partha-gayen/",            label: "LinkedIn profile"  },
+    { icon: <FaInstagram />, href: "https://www.instagram.com/mr.parthag23",              label: "Instagram profile" },
+    { icon: <FaEnvelope />,  href: "mailto:work.parthag23@gmail.com",                     label: "Send email"        },
+  ];
+
   return (
     <section
       ref={sectionRef}
       id="about"
+      aria-label="About me"
       className={`py-20 lg:py-28 transition-colors duration-500 ${textPrimary}`}
-      style={{
-        // ✅ Glass — lets animated background show through
-        background: dark ? "rgba(0,0,0,0.25)" : "rgba(255,255,255,0.25)",
-        backdropFilter: "blur(2px)",
-        WebkitBackdropFilter: "blur(2px)",
-      }}
+      style={glassStyle}
     >
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
@@ -73,7 +73,7 @@ export default function AboutSection({ dark }) {
             className="text-lime-400 text-sm uppercase tracking-widest mb-2"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={vp}
             transition={{ duration: 0.5 }}
           >
             Who I Am
@@ -83,7 +83,7 @@ export default function AboutSection({ dark }) {
             className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 lg:mb-6 tracking-wide"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={vp}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
             ABOUT ME
@@ -100,7 +100,7 @@ export default function AboutSection({ dark }) {
               style={{ color: textMuted }}
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={vp}
               transition={{ duration: 0.5, delay: 0.15 + i * 0.08 }}
             >
               {text}
@@ -112,21 +112,17 @@ export default function AboutSection({ dark }) {
             className="grid grid-cols-3 gap-6 lg:gap-10 mb-8 justify-items-center lg:justify-items-start"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={vp}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             {[
-              { value: "2026", label: "Expected Graduation" },
-              { value: `${projectCount}+`, label: "Academic Projects" },
-              { value: `${skillCount}+`, label: "Technologies Learned" },
+              { value: "2026",              label: "Expected Graduation"  },
+              { value: `${projectCount}+`,  label: "Academic Projects"    },
+              { value: `${skillCount}+`,    label: "Technologies Learned" },
             ].map(({ value, label }) => (
               <div key={label}>
-                <h3 className="text-lime-400 text-2xl sm:text-3xl lg:text-4xl font-bold">
-                  {value}
-                </h3>
-                <p className="text-xs sm:text-sm mt-2" style={{ color: textMuted }}>
-                  {label}
-                </p>
+                <h3 className="text-lime-400 text-2xl sm:text-3xl lg:text-4xl font-bold">{value}</h3>
+                <p className="text-xs sm:text-sm mt-2" style={{ color: textMuted }}>{label}</p>
               </div>
             ))}
           </motion.div>
@@ -137,19 +133,15 @@ export default function AboutSection({ dark }) {
             style={{ color: textMuted }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={vp}
             transition={{ duration: 0.5, delay: 0.35 }}
           >
             <p>
-              <span className="font-medium" style={{ color: dark ? "#fff" : "#111" }}>
-                Email:
-              </span>{" "}
+              <span className="font-medium" style={{ color: dark ? "#fff" : "#111" }}>Email:</span>{" "}
               work.parthag23@gmail.com
             </p>
             <p>
-              <span className="font-medium" style={{ color: dark ? "#fff" : "#111" }}>
-                Location:
-              </span>{" "}
+              <span className="font-medium" style={{ color: dark ? "#fff" : "#111" }}>Location:</span>{" "}
               India
             </p>
           </motion.div>
@@ -159,20 +151,16 @@ export default function AboutSection({ dark }) {
             className="flex justify-center lg:justify-start gap-6 text-lg mb-8"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={vp}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            {[
-              { icon: <FaGithub />,    href: "https://github.com/ParthaG23" },
-              { icon: <FaLinkedin />,  href: "https://www.linkedin.com/in/partha-gayen/" },
-              { icon: <FaInstagram />, href: "https://www.instagram.com/mr.parthag23" },
-              { icon: <FaEnvelope />,  href: "mailto:work.parthag23@gmail.com" },
-            ].map(({ icon, href }) => (
+            {socialLinks.map(({ icon, href, label }) => (
               <motion.a
                 key={href}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={label}
                 whileHover={{ scale: 1.2, color: "#a3e635" }}
                 whileTap={{ scale: 0.9 }}
                 className="transition"
@@ -188,13 +176,14 @@ export default function AboutSection({ dark }) {
             className="flex justify-center lg:justify-start"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={vp}
             transition={{ duration: 0.5, delay: 0.45 }}
           >
             <motion.button
               onClick={() => navigate("/about")}
               whileHover={{ scale: 1.04, backgroundColor: "#a3e635", color: "#000" }}
               whileTap={{ scale: 0.96 }}
+              aria-label="Read my full story"
               className="px-6 py-2.5 rounded-full border border-lime-400 text-lime-400 text-sm sm:text-base transition-all duration-300"
             >
               MY STORY

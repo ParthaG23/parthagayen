@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import { FiCheckCircle } from "react-icons/fi";
+import { useGlass } from "../../hooks/useGlass";
 
 export default function SuccessMessage({ dark, onClose }) {
+  const glassStyle = useGlass(dark);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -18,17 +21,7 @@ export default function SuccessMessage({ dark, onClose }) {
         transition={{ type: "spring", stiffness: 200 }}
         onClick={(e) => e.stopPropagation()}
         className="rounded-3xl px-10 py-8 shadow-2xl text-center max-w-sm w-[90%]"
-        style={{
-          background: dark ? "rgba(10,10,10,0.6)" : "rgba(255,255,255,0.6)",
-          backdropFilter: "blur(24px)",
-          WebkitBackdropFilter: "blur(24px)",
-          border: dark
-            ? "1px solid rgba(255,255,255,0.08)"
-            : "1px solid rgba(0,0,0,0.08)",
-          boxShadow: dark
-            ? "0 24px 60px rgba(0,0,0,0.6)"
-            : "0 24px 60px rgba(0,0,0,0.12)",
-        }}
+        style={glassStyle}
       >
         {/* Icon with glow */}
         <motion.div

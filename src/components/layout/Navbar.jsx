@@ -1,29 +1,16 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
 import heroImg from "../../assets/images/nav.webp";
+import { useScrolled } from "../../hooks/useScrolled";
+import { useGlass } from "../../hooks/useGlass";
 
 export default function Navbar({ dark }) {
-  const [scrolled, setScrolled] = useState(false);
+  const scrolled   = useScrolled(50);
+  const glassStyle = useGlass(dark);
   const [open, setOpen] = useState(false);
   const location = useLocation();
-  const ticking = useRef(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!ticking.current) {
-        requestAnimationFrame(() => {
-          setScrolled(window.scrollY > 50);
-          ticking.current = false;
-        });
-        ticking.current = true;
-      }
-    };
-    setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     setOpen(false);
@@ -31,15 +18,7 @@ export default function Navbar({ dark }) {
 
   const navItems = ["Home", "About", "Projects", "Contact"];
 
-  // ✅ Navbar bg: semi-transparent + backdrop blur
-  // so the animated background bleeds through
-  const navBg = dark
-    ? "bg-white/5 border-white/10 text-white"
-    : "bg-black/5 border-black/8 text-black";
-
-  const mobileBg = dark
-    ? "bg-black/60 border-white/10 text-white"
-    : "bg-white/60 border-black/10 text-black";
+  const textColor = dark ? "text-white" : "text-black";
 
   return (
     <div className="fixed top-4 left-0 w-full flex justify-center z-50 px-4">
@@ -51,16 +30,9 @@ export default function Navbar({ dark }) {
         }}
         transition={{ duration: 0.4, ease: "easeInOut" }}
         className={`max-w-6xl rounded-full shadow-lg border flex items-center
-          backdrop-blur-xl
           ${scrolled ? "justify-center px-4" : "justify-between px-6"}
-          transition-colors duration-500
-          ${navBg}`}
-        style={{
-          // ✅ Extra: subtle inner glow on dark mode
-          boxShadow: dark
-            ? "0 0 0 1px rgba(163,230,53,0.08), 0 8px 32px rgba(0,0,0,0.4)"
-            : "0 8px 32px rgba(0,0,0,0.08)",
-        }}
+          transition-colors duration-500 ${textColor}`}
+        style={glassStyle}
       >
 
         {/* ═══ NORMAL NAV ═══ */}
@@ -211,8 +183,8 @@ export default function Navbar({ dark }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.97 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className={`absolute top-20 w-[90%] rounded-2xl p-6 shadow-xl md:hidden
-              backdrop-blur-xl border ${mobileBg}`}
+            className={`absolute top-20 w-[90%] rounded-2xl p-6 shadow-xl md:hidden ${textColor}`}
+            style={glassStyle}
           >
             <div className="flex flex-col gap-5 text-center text-lg">
               {navItems.map((item) => {

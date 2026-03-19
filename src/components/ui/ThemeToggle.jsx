@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import { FiSun, FiMoon } from "react-icons/fi";
+import { useGlass } from "../../hooks/useGlass";
 
 export default function ThemeToggle({ dark, setDark }) {
+  const glassStyle = useGlass(dark);
+
   return (
     <div
       onClick={() => setDark(!dark)}
@@ -9,12 +12,7 @@ export default function ThemeToggle({ dark, setDark }) {
     >
       <div
         className="w-16 h-8 rounded-full flex items-center px-1 shadow-lg border transition-all duration-300"
-        style={{
-          background: dark ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.3)",
-          borderColor: dark ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.15)",
-          backdropFilter: "blur(12px)",
-          WebkitBackdropFilter: "blur(12px)",
-        }}
+        style={glassStyle}
       >
         <motion.div
           layout
