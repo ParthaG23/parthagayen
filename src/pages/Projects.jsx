@@ -3,16 +3,13 @@ import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import projects from "../data/Project";
-import { useGlass } from "../hooks/useGlass";
 
 export default function Projects({ dark }) {
-  const glassStyle = useGlass(dark);
-
   return (
     <div className={`min-h-screen transition-colors duration-500 ${dark ? "text-white" : "text-black"}`}>
       <Navbar dark={dark} />
 
-      <main className="pt-32 lg:pt-40 px-6 pb-24" style={glassStyle}>
+      <main className="pt-32 lg:pt-40 px-6 pb-24">
 
         <motion.div
           initial={{ opacity: 0, y: 40 }}

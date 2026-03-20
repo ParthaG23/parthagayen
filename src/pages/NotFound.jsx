@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FiHome, FiArrowLeft } from "react-icons/fi";
-import { useGlass } from "../hooks/useGlass";
 
 // ── Floating particle ──────────────────────────────────────────────────────
 function Particle({ dark, style }) {
@@ -33,8 +32,6 @@ function Particle({ dark, style }) {
 
 // ── Main component ─────────────────────────────────────────────────────────
 export default function NotFound({ dark }) {
-  const glassStyle = useGlass(dark);
-
   const particles = [
     { top: "20%", left: "10%",  delay: 0,    duration: 3.2 },
     { top: "60%", left: "85%",  delay: 0.8,  duration: 2.8 },
@@ -87,7 +84,6 @@ export default function NotFound({ dark }) {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="relative w-full max-w-lg rounded-3xl px-8 py-12 sm:px-14 sm:py-16 text-center shadow-2xl"
-        style={glassStyle}
       >
 
         {/* ── Shimmer top line ── */}
