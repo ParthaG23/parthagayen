@@ -25,8 +25,8 @@ export default defineConfig({
         scope: "/",
         display: "standalone",
         orientation: "portrait-primary",
-        theme_color: "#b5f23d",
-        background_color: "#0d0f0b",
+        theme_color: "rgba(255,255,255,0.05)",
+        background_color: "rgba(255,255,255,0.05)",
         lang: "en",
         icons: [
           { src: "/web-app-manifest-192x192.png", sizes: "192x192", type: "image/png", purpose: "any" },
