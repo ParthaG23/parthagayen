@@ -10,11 +10,12 @@ import rpsImg from "../assets/projects/rps.webp";
 import homeLoanCalcImg  from"../assets/projects/homelone.webp"
 import emiCalcImg from "../assets/projects/emiCal.webp"
 import ishqaraImg from "../assets/projects/Ishqara.webp"
+import nexusGuardImg from "../assets/projects/NexusGuard.webp"
 
 const projects = [
 
   {
-    id:11,
+    id:12,
     
   title: "Ma Kali Vandar — Smart Grocery Shop Management System (Own Shop)",
   description:
@@ -32,6 +33,26 @@ const projects = [
   live: "https://ma-kali-vander-our-shop-5qlp.vercel.app", 
   image: ourShopImg,
   date: "Mar 2026",
+},
+{
+  id: 11,
+  title: "NexusGuard – AI-Powered Credit Card Fraud Detection",
+  description:
+    "Designed and developed an AI-driven fraud detection dashboard that analyzes transaction data and classifies activities as fraudulent or legitimate in real-time. Built with an interactive analytics interface featuring probability timelines, detection breakdowns, and scan history. Integrated a Python-based ML model with a scalable backend API to deliver fast predictions, achieving sub-second response times and an intuitive, responsive user experience.",
+  tech: [
+    "React.js",
+    "Tailwind CSS",
+    "Framer Motion",
+    "Node.js / Express.js",
+    "Python (Flask)",
+    "Scikit-learn",
+    "MongoDB",
+    "REST API"
+  ],
+  github: "https://github.com/ParthaG23/Credit_Card_Fraud_Detection",
+  live: "https://credit-card-fraud-detection-black.vercel.app",
+  image: nexusGuardImg,
+  date: "Sept 2025",
 },
 
 {
