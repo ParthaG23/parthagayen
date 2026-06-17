@@ -1,16 +1,82 @@
-# React + Vite
+<div align="center">
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🌌 Partha Gayen Portfolio (PWA)
 
-Currently, two official plugins are available:
+### Premium Installable Developer Portfolio · React & Vite · Framer Motion
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Portfolio_PWA-6366f1?style=for-the-badge)](https://parthagayen.vercel.app/)
+[![React](https://img.shields.io/badge/React-18-61dafb?style=flat-square&logo=react)](https://react.dev)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8?style=flat-square&logo=tailwindcss)](https://tailwindcss.com)
+[![PWA](https://img.shields.io/badge/PWA-Installable-10b981?style=flat-square&logo=googlechrome)](https://web.dev/progressive-web-apps/)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-Smooth-f43f5e?style=flat-square&logo=framermotion)](https://framer.com/motion)
 
-## React Compiler
+**parthagayen** is a premium, state-of-the-art developer portfolio designed as an installable Progressive Web App (PWA). It features smooth Lenis inertia scrolling, Framer Motion page transitions, custom contact hooks powered by EmailJS, and a catalog showcase.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+*Offline Cache Capable (Vite-plugin-PWA) · Lenis Smooth Scroll · Interactive Contact Portal · Glassmorphism Navbar*
 
-## Expanding the ESLint configuration
+</div>
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## ✨ Key Features
+
+| Feature | Description |
+|---------|-------------|
+| 📱 **Progressive Web App** | Fully installable app on iOS, Android, and Desktop with offline content caching. |
+| 📜 **Lenis Scroll Integration** | Smooth inertia-based scroll experiences across all page nodes. |
+| ✉️ **Direct EmailJS Gate** | Functional contact form submitting inquiries directly to mailboxes without servers. |
+| ✨ **Fluid Micro-Animations** | Advanced hover scales, scrolling fade-ins, and page sliders. |
+
+---
+
+## 🧱 Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| ⚛️ **UI Framework** | React 18 |
+| ⚡ **Build Engine** | Vite |
+| 📱 **PWA Service** | Vite-plugin-PWA & Custom Manifest |
+| 🌊 **Scroll Engine** | Lenis Scroll |
+| 🎨 **Styling** | Tailwind CSS |
+| ✨ **Animations** | Framer Motion & Lucide Icons |
+
+---
+
+## ⚙️ Running Locally
+
+### Prerequisites
+* **Node.js** 18+
+
+### Setup & Run
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/ParthaG23/parthagayen.git
+cd parthagayen
+
+# 2. Configure Environment Variables
+# Create a .env file with your EmailJS config keys:
+# VITE_EMAILJS_SERVICE_ID=your_id
+
+# 3. Install packages
+npm install
+
+# 4. Start local development server
+npm run dev
+```
+Portfolio runs at → **http://localhost:5173**
+
+---
+
+## 🧑‍💻 Author
+
+**Partha Gayen**
+
+[![GitHub](https://img.shields.io/badge/GitHub-ParthaG23-181717?style=flat-square&logo=github)](https://github.com/ParthaG23)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Partha_Gayen-0A66C2?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/partha-gayen)
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
